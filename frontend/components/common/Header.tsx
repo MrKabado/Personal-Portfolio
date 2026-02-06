@@ -8,11 +8,12 @@ export default function Header() {
     { name: "Home" },
     { name: "About" },
     { name: "Projects" },
+    {name: "Blogs"},
     { name: "Contact" }
   ];
 
   return (
-    <header className="px-6 md:px-20 py-3 shadow-md">
+    <header className="px-6 md:px-34 py-3 shadow-md bg-white/20 backdrop-blur-md">
       <div className="flex items-center justify-between">
         {/* Logo / Name */}
         <div className="flex flex-col">
@@ -22,15 +23,15 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex">
-          <ul className="flex gap-5 items-center">
+          <ul className="flex gap-4 items-center">
             {navItems.map((item, i) => (
               <li
                 key={i}
                 className="
-                  text-sm cursor-pointer bg-gray-100 rounded-sm
-                  px-3 py-1 w-20 text-center
+                  text-gray-500 text-sm cursor-pointer rounded-sm
+                  px-3 py-1 w-15 text-center
                   transition-all duration-200
-                  hover:font-semibold
+                  hover:text-black
                 "
               >
                 {item.name}
