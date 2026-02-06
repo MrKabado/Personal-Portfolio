@@ -12,7 +12,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="px-6 md:px-10 py-3 shadow-md">
+    <header className="px-6 md:px-20 py-3 shadow-md">
       <div className="flex items-center justify-between">
         {/* Logo / Name */}
         <div className="flex flex-col">
