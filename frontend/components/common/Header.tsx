@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ModeToggle } from "./ThemeToggle";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,10 @@ export default function Header() {
         <div className="flex flex-col">
           <h1 className="font-semibold">Jerson Jay Bonghanoy</h1>
           <h1 className="text-gray-500 text-sm">Aspiring Dev</h1>
+        </div>
+
+        <div>
+          <ModeToggle />
         </div>
 
         {/* Desktop Nav */}
