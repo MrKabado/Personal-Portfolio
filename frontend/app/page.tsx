@@ -1,11 +1,11 @@
 "use client";
 
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Facebook, Github, Calendar } from "lucide-react";
 import Profile from "../assets/profile.jpg";
 import Image from "next/image";
+import { Images } from "../assets/Images"
 
 export default function HomePage() {
 
@@ -14,6 +14,22 @@ export default function HomePage() {
     {icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy.5/"},
     {icon: Github, link: "https://github.com/MrKabado"}
   ]
+
+  const stacks = [
+    {image: Images.HTML, name: "HTML5"},
+    {image: Images.CSS, name: "CSS3"},
+    {image: Images.Javascript, name: "JavaScript"},
+    {image: Images.MySql, name: "MySQL"},
+    {image: Images.React, name: "React"},
+    {image: Images.Figma, name: "Figma"},
+    {image: Images.Express, name: "Express"},
+    {image: Images.MongoDB, name: "MongoDB"},
+    {image: Images.Nextjs, name: "Next.js"},
+    {image: Images.Postman, name: "Postman"},
+    {image: Images.Tailwindcss, name: "Tailwind CSS"},
+    {image: Images.Typscript, name: "TypeScript"},
+  ];
+  
 
   return (
     <div className="px-34 py-22">
@@ -51,8 +67,40 @@ export default function HomePage() {
           </div>
 
           {/* THE INFINITE SCROLL */}
-          <div className="border border-black h-full">
-            
+          <div className="max-w-xl w-full flex h-24 overflow-hidden items-center">
+             <motion.div
+              className="flex gap-4"
+              animate={{x: ["0%", "-50%"]}}
+              transition={{
+                repeat: Infinity,
+                duration: 15,
+                ease: "linear",
+              }}
+             >
+              {[...stacks, ...stacks, ...stacks].map((stack, index) => (
+                <div
+                  key={index}
+                  className="
+                    whitespace-nowrap px-4 py-2
+                    rounded-md
+                    text-sm font-medium text-gray-800
+                    bg-white
+                  "
+                >
+                
+                <Image 
+                  src={stack.image || stack.image.src}
+                  alt={stack.name}  // <-- important
+                  width={40}        // size you want
+                  height={40}
+                  unoptimized
+                  className="object-contain"
+                />
+
+                {stack.name}
+                </div>
+              ))}
+             </motion.div>
           </div>
         </div>
 
@@ -60,7 +108,7 @@ export default function HomePage() {
           <Image 
             src={Profile}
             alt="Profile"
-            className="w-full border rounded-xl object-cover"
+            className="w-50 md:w-100 border rounded-xl object-cover"
           />
         </div>
         
