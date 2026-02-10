@@ -11,6 +11,7 @@ import Postman from "./postman-original.svg";
 import React from "./react-original.svg";
 import Tailwindcss from "./tailwindcss-original.svg";
 import Typscript from "./typescript-original.svg";
+import CpcLibrary from "./CpcLibrarySystem-CCyQJnZR.jpg";
 
 export const Images = {
   CSS,
@@ -25,5 +26,6 @@ export const Images = {
   Postman,
   React,
   Tailwindcss,
-  Typscript
+  Typscript,
+  CpcLibrary
 }
