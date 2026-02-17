@@ -1,23 +1,21 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { ModeToggle } from "./ThemeToggle";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-type HeaderProps = {
-  isVisited: string;
-  setIsVisited: (value: string) => void;
-};
-
-export default function Header({ isVisited, setIsVisited }: HeaderProps) {
+export default function Header() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const pathname = usePathname(); // Get current path
 
   const navItems = [
     { name: "Home", link: "" },
     { name: "About", link: "about" },
     { name: "Projects", link: "projects" },
-    { name: "Blogs", link: "blog"},
+    { name: "Blogs", link: "blog" },
     { name: "Contact", link: "contact" },
   ];
 
@@ -25,15 +23,11 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // scrolling down
         setHidden(true);
       } else {
-        // scrolling up
         setHidden(false);
       }
-
       setLastScrollY(currentScrollY);
     };
 
@@ -65,13 +59,9 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
             {navItems.map((item) => (
               <li
                 key={item.name}
-                onClick={() => {
-                  setIsVisited(item.name);
-                  window.location.href = `/${item.link}`
-                }}
                 className={`
                   ${
-                    isVisited === item.name
+                    pathname === `/${item.link}` || (item.link === "" && pathname === "/")
                       ? "bg-gray-100 text-black"
                       : "bg-transparent text-gray-500"
                   }
@@ -81,15 +71,13 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
                   hover:text-black
                 `}
               >
-                {item.name}
+                <Link href={`/${item.link}`}>{item.name}</Link>
               </li>
             ))}
           </ul>
 
           <ModeToggle />
         </nav>
-
-
 
         {/* Mobile Menu Button */}
         <button
@@ -107,13 +95,10 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
             {navItems.map((item) => (
               <li
                 key={item.name}
-                onClick={() => {
-                  setIsVisited(item.name);
-                  setOpen(false);
-                }}
+                onClick={() => setOpen(false)}
                 className={`
                   ${
-                    isVisited === item.name
+                    pathname === `/${item.link}` || (item.link === "" && pathname === "/")
                       ? "bg-red-700 text-white"
                       : "bg-gray-100"
                   }
@@ -122,7 +107,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
                   transition-all duration-200
                 `}
               >
-                {item.name}
+                <Link href={`/${item.link}`}>{item.name}</Link>
               </li>
             ))}
           </ul>
