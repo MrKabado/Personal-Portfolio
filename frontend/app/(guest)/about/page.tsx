@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { div, p } from "framer-motion/client";
 import { useState } from "react";
+import Link from "next/link";
 
 type SocialType = {
   name: string;
@@ -25,9 +26,9 @@ type SocialType = {
 
 export default function AboutPage() {
   const Socials = [
-    { name: "LinkedIn", icon: Linkedin },
-    { name: "Github", icon: Github },
-    { name: "Facebook", icon: Facebook },
+    { name: "LinkedIn", icon: Linkedin, link: "https://www.linkedin.com/in/bonghanoy-jerson-jay-49b205378/" },
+    { name: "Github", icon: Github, link: "https://github.com/MrKabado" },
+    { name: "Facebook", icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy" },
   ];
 
   const Contacts = [
@@ -137,10 +138,11 @@ export default function AboutPage() {
                 Socials
               </h1>
               <ul className="flex flex-col gap-4">
-                {Socials.map(({ icon: Icon, name }, i) => (
-                  <li
-                    key={i}
+                {Socials.map(({ icon: Icon, name, link }, i) => (
+                    <li
                     className="text-sm flex gap-2 items-center cursor-pointer hover:text-gray-600"
+                    key={i}
+                    onClick={() => window.open(`${link}`)}
                   >
                     <Icon className="w-4 h-4" />
                     {name}
