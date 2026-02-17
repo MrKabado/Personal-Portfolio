@@ -12,6 +12,8 @@ import React from "./react-original.svg";
 import Tailwindcss from "./tailwindcss-original.svg";
 import Typscript from "./typescript-original.svg";
 import CpcLibrary from "./CpcLibrarySystem-CCyQJnZR.jpg";
+import BackgroundImage from "./background-image.jpg";
+import Profile from "../assets/profile.jpg"
 
 export const Images = {
   CSS,
@@ -27,5 +29,7 @@ export const Images = {
   React,
   Tailwindcss,
   Typscript,
-  CpcLibrary
+  CpcLibrary,
+  BackgroundImage,
+  Profile
 }

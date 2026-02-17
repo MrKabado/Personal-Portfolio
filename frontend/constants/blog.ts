@@ -18,7 +18,7 @@ export const BLOG_POST: BlogPost[] = [
     content: "Next.js is a framework that make it easy to build full-stack application. It provides file-based routing, server components, and more.",
     category: ["tech", "nextjs"],
     date: "February 7, 2026",
-    author: "Rigel Recurerdo" 
+    author: "Romel Balungag" 
   },
   {
     id: "2",
@@ -28,6 +28,6 @@ export const BLOG_POST: BlogPost[] = [
     content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     category: ["tech", "reactjs"],
     date: "February 7, 2026",
-    author: "Jinky Aguillar"
+    author: "John Gave Dela Cerna"
   }
 ]

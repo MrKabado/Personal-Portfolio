@@ -47,7 +47,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
       className={`
         fixed top-0 left-0 w-full z-50
         px-6 md:px-34 py-3
-        shadow-md bg-white/20 backdrop-blur-lg
+        shadow-md bg-white/50 backdrop-blur-lg
         transition-transform duration-300 ease-in-out
         ${hidden ? "-translate-y-full" : "translate-y-0"}
       `}
@@ -72,7 +72,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
                 className={`
                   ${
                     isVisited === item.name
-                      ? "bg-red-700 text-white"
+                      ? "bg-gray-100 text-black"
                       : "bg-transparent text-gray-500"
                   }
                   text-sm cursor-pointer rounded-sm
@@ -85,9 +85,11 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
               </li>
             ))}
           </ul>
+
+          <ModeToggle />
         </nav>
 
-        <ModeToggle />
+
 
         {/* Mobile Menu Button */}
         <button

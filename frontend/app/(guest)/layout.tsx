@@ -2,6 +2,7 @@
 
 import Header from "@/components/common/Header"
 import { useState } from "react";
+import Footer from "@/components/common/Footer";
 
 export default function GuestLayout({
   children,
@@ -16,6 +17,7 @@ export default function GuestLayout({
       <main className="pt-20">
         {children}
       </main>
+      <Footer />
     </>
   )
 }

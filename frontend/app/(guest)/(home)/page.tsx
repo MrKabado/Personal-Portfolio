@@ -67,7 +67,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="my-40">
+      <div className="mt-40">
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-center text-md bg-gray-200 border border-transparent rounded-md p-1 w-fit">
             Recent Projects
