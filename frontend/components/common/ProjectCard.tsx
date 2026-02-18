@@ -13,7 +13,7 @@ export default function ProjectCard() {
     "TailwindCSS"
   ]
   return (
-    <div className="shadow-[0_0_4px_rgba(0,0,0,0.3)] bg- rounded-md">
+    <div className="shadow-[0_0_4px_rgba(0,0,0,0.3)] bg- rounded-md hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-shadow duration-200 cursor-pointer">
       <Image 
         src={Images.CpcLibrary}
         alt="Cpc Library"
