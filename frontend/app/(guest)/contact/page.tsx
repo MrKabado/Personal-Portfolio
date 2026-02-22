@@ -1,4 +1,5 @@
 "use client";
+import api from "@/lib/api";
 import {
   Mail,
   Phone,
@@ -9,8 +10,17 @@ import {
   Twitter,
   Facebook,
 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { ButtonSubmit } from "@/components/common/Button";
 
 export default function ContactPage() {
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
   const ContactInfo = [
     {
       heading: "Email",
@@ -37,6 +47,39 @@ export default function ContactPage() {
     { icon: Twitter, link: "https://x.com/Jay_zen2004" },
     { icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy" },
   ];
+
+
+  const HandleSubmit = async (e: any) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    if (!fname || !lname || !email || !message) {
+      setSubmitted(false);
+      return toast.error("All inputs fields are required!");
+    }
+
+    try {
+      const response = await api.post('/api/admin/add-contact', {
+        fname, lname, email, message
+      });
+
+      if (response) {
+        toast.success(response.data.message);
+
+        setFname("");
+        setLname("");
+        setEmail("");
+        setMessage("");
+        setSubmitted(false);
+      }
+
+    } catch (error) {
+      setSubmitted(false);
+      console.log(error);
+      toast.error("Error in submitting data " );
+      return;
+    }
+  }
 
   return (
     <div className="default-div">
@@ -103,8 +146,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="w-full shadow-[0_0_3px_0_rgba(0,0,0,0.2)] rounded-lg p-6 h-auto">
-          <div className="flex flex-col justify-baseline">
+        <div className="flex flex-col justify-between w-full shadow-[0_0_3px_0_rgba(0,0,0,0.2)] rounded-lg p-6">
+          <div className="flex flex-col justify-baseline gap-1">
             <h1 className="font-semibold text-lg">Let's get in touch</h1>
             <p className="text-sm text-gray-600">
               Whether you have a project in mind or just want to connect, I'd
@@ -113,33 +156,64 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <form action="" className="my-4 flex flex-col gap-4 justify-between">
+          <form onSubmit={HandleSubmit} className="my-4 flex flex-col gap-4 justify-between">
             <div className="flex flex-row justify-between gap-4">
               <div className="flex flex-col gap-1 w-full">
                 <label htmlFor="fname" className="text-sm font-medium text-gray-800">First Name</label>
-                <input type="text" id="fname" className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"/>
+                <input 
+                  type="text" 
+                  id="fname" 
+                  className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+                  value={fname}
+                  onChange={(e) => setFname(e.target.value)}
+                />
               </div>
 
               <div className="flex flex-col gap-1 w-full">
                 <label htmlFor="lname" className="text-sm font-medium text-gray-800">Last Name</label>
-                <input type="text" id="lname" className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"/>
+                <input 
+                  type="text" 
+                  id="lname" 
+                  className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+                  value={lname}
+                  onChange={(e) => setLname(e.target.value)}
+                  />
               </div>
             </div>
 
             <div className="flex flex-col gap-1 w-full">
               <label htmlFor="email" className="text-sm font-medium text-gray-800">Email</label>
-              <input type="text" id="email" className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"/>
+              <input 
+                type="text" 
+                id="email" 
+                className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="flex flex-col gap-1 w-full">
               <label htmlFor="message" className="flex gap-2 items-end text-sm font-medium text-gray-800">How can I help you? <span className="inline-block text-xs text-gray-400">Max 500 characters</span></label>
-              <textarea cols={30} rows={3} name="message" id="message" className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md">
+              <textarea 
+                cols={30} 
+                rows={3} 
+                name="message" 
+                id="message" 
+                className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              >
               </textarea>
             </div>
 
-            <button type="submit" className="border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium">
-                Submit
-            </button>
+            <ButtonSubmit props={{
+              submitted: submitted,
+              buttonType: "submit",
+              className: "w-full border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium",
+              btnOnClick: HandleSubmit,
+              btnText: "Submit",
+              btnLoadingText: "Submitting"
+            }} />
           </form>
         </div>
       </div>

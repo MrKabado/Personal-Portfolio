@@ -4,7 +4,12 @@ import { ModeToggle } from "./ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Header() {
+type HeaderProps = {
+  isVisited: string,
+  setIsVisited: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function Header({ isVisited, setIsVisited }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
