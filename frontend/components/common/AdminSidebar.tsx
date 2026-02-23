@@ -1,14 +1,15 @@
 import { LayoutDashboard, Folder, MessageSquare, LogOut } from "lucide-react";
+import Link from "next/link";
 
-export default function AdminSidebar(props: {logoutBtnSideBar: () => void}) {
+export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
   const SidebarNav = [
-    { name: "Dashboard", icon: LayoutDashboard },
-    { name: "Projects", icon: Folder },
-    { name: "Contacts/Messages", icon: MessageSquare },
+    { name: "Dashboard", icon: LayoutDashboard, link: "dashboard" },
+    { name: "Projects", icon: Folder, link: "projects" },
+    { name: "Contacts/Messages", icon: MessageSquare, link: "contacts" },
   ];
 
   return (
-    <div className="h-screen w-80 bg-white shadow-lg flex flex-col justify-between px-8 pt-25 pb-8 border">
+    <div className="h-screen sticky top-0 w-80 bg-white shadow-lg flex flex-col justify-between px-8 pt-22 pb-8">
       <div>
         {/* Admin Heading */}
         <div className="mb-8 flex flex-col items-center">
@@ -18,14 +19,13 @@ export default function AdminSidebar(props: {logoutBtnSideBar: () => void}) {
 
         {/* Sidebar Buttons */}
         <div className="flex flex-col gap-3">
-          {SidebarNav.map(({ name, icon: Icon }, i) => (
-            <button
-              key={i}
-              className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 font-medium text-gray-700 cursor-pointer"
-            >
-              <Icon className="w-8" />
-              {name}
-            </button>
+          {SidebarNav.map(({ name, icon: Icon, link }, i) => (
+            <Link href={`/admin/${link}`} key={i}>
+              <button className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 font-medium text-gray-700 cursor-pointer">
+                <Icon className="w-8" />
+                {name}
+              </button>
+            </Link>
           ))}
         </div>
       </div>
@@ -35,7 +35,7 @@ export default function AdminSidebar(props: {logoutBtnSideBar: () => void}) {
         onClick={props.logoutBtnSideBar}
       >
         <LogOut className="w-8" />
-          Logout
+        Logout
       </button>
     </div>
   );

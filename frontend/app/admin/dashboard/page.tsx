@@ -50,7 +50,7 @@ export default function DashboardPage() {
   const KeyStats = [
 
     {name: "Total Projects", value: 5},
-    {name: "Messages", value: recentTasks.length},
+    {name: "Total Messages", value: recentTasks.length},
     {name: "New Messages", value: 2},
   ]
 
