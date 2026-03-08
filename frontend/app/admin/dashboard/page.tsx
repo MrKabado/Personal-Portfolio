@@ -67,7 +67,7 @@ export default function DashboardPage() {
         {KeyStats.map((stats, i) => ( 
           <div key={i} className="w-40 py-2 px-4 text-gray-300 flex flex-col items-center justify-between 
           bg-[#333333] rounded-lg hover:opacity-85 transition-all duration-200 cursor-default">
-            <h1 className="text-2xl font-semibold">{stats.value}</h1>
+            <h1 className="text-2xl font-semibold">{stats.value || 0}</h1>
             <h1 className="font-medium">{stats.name}</h1>
           </div>
         ))}

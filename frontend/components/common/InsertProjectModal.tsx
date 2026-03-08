@@ -16,6 +16,7 @@ import { useState } from "react";
 type ProjectData = {
   title: string;
   description: string;
+  cover_image?: File;
   link: string;
   techStack: string[];
 };
@@ -24,6 +25,7 @@ type Props = {
   onSave: (project: ProjectData) => void;
   defaultTitle?: string;
   defaultDescription?: string;
+  defaultCoverImage?: string;
   defaultLink?: string;
 };
 
@@ -31,11 +33,13 @@ export default function InsertProjectModal({
   onSave,
   defaultTitle = "",
   defaultDescription = "",
+  defaultCoverImage = "",
   defaultLink = "",
 }: Props) {
   const [projectTitle, setProjectTitle] = useState<string>(defaultTitle);
   const [projectDescription, setProjectDescription] = useState<string>(defaultDescription);
   const [projectLink, setProjectLink] = useState<string>(defaultLink);
+  const [projectCoverImage, setProjectCoverImage] = useState<File | null>(null);
   const [techStack, setTechStack] = useState<string[]>([]);
 
   const handleCheckboxChange = (tech: string, checked: boolean) => {
@@ -52,6 +56,7 @@ export default function InsertProjectModal({
       description: projectDescription,
       link: projectLink,
       techStack,
+      cover_image: projectCoverImage || undefined,
     });
   };
 
@@ -59,7 +64,7 @@ export default function InsertProjectModal({
     <>
       <DialogHeader>
         <DialogTitle className="font-semibold text-xl">
-          Add new project
+          Add new project 
         </DialogTitle>
         <DialogDescription>
           Fill in the required details below to create a new project. Click save
@@ -87,6 +92,21 @@ export default function InsertProjectModal({
             placeholder="Project description..."
             value={projectDescription}
             onChange={(e) => setProjectDescription(e.target.value)}
+          />
+        </Field>
+
+        <Field>
+          <Label>Cover Image</Label>
+          <Input 
+            type="file"
+            id="project_cover_image"
+            name="project_image"
+            className="cursor-pointer"
+            onChange={(e) => {
+              if (e.target.files) {
+                setProjectCoverImage(e.target.files[0]);
+              }
+            }}
           />
         </Field>
 
