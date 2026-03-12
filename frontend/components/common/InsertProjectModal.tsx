@@ -100,7 +100,7 @@ export default function InsertProjectModal({
           <Input 
             type="file"
             id="project_cover_image"
-            name="project_image"
+            name="proj_cover_image"
             className="cursor-pointer"
             onChange={(e) => {
               if (e.target.files) {

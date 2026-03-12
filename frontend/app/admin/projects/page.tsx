@@ -6,13 +6,14 @@ import ProjectCard from "@/components/common/ProjectCard";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import InserProjectModal from "@/components/common/InsertProjectModal";
 import { useState } from "react";
+import api from "@/lib/api";
 
 type ProjectData = {
-  title: string,
+  title: string;
   description: string;
   link: string;
   techStack: string[];
-}
+};
 
 export default function ProjectsPage() {
   const handleTechStackChange = (techStack: string[]) => {
@@ -22,10 +23,8 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
 
   const handleSubmitProject = (newProject: ProjectData) => {
-      setProjects(prev => [...prev, newProject]);
-
-  }
-
+    setProjects((prev) => [...prev, newProject]);
+  };
 
   return (
     <div className="admin-default-div flex flex-col">
@@ -35,21 +34,30 @@ export default function ProjectsPage() {
           <Plus className="w-4 h-4" />
         </DialogTrigger>
 
-        <DialogContent className="max-w-md max-h-md h-full w-full">
+        <DialogContent className="max-w-md h-120 w-full">
           <InserProjectModal
-            onSave={(project) => {
+            onSave={async (project) => {
               console.log("Project submitted:", project);
               handleSubmitProject(project);
-              
+
               const formData = new FormData();
               formData.append("proj_title", project.title);
-              formData.append("proj_description", project.title);
+              formData.append("proj_description", project.description);
               formData.append("proj_link", project.link);
               formData.append("proj_cover_image", project.cover_image!); // the File object
-              project.techStack.forEach((tech) => formData.append("proj_tech_stack", tech));
+              project.techStack.forEach((tech) =>
+                formData.append("proj_tech_stack", tech));
 
+              try {
+                const response = await api.post(
+                  "/api/admin/projects",
+                  formData,
+                );
 
-              //NEXT TO DO IS CREATE API BACKEND FOR RECEIVING THE FORMS
+                console.log("Uploaded: ", response.data);
+              } catch (error) {
+                console.error("Upload failed:", error);
+              }
             }}
           />
         </DialogContent>
