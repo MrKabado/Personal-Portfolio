@@ -13,6 +13,7 @@ type ProjectData = {
   description: string;
   link: string;
   techStack: string[];
+  cover_image?: File;
 };
 
 export default function ProjectsPage() {
@@ -44,7 +45,11 @@ export default function ProjectsPage() {
               formData.append("proj_title", project.title);
               formData.append("proj_description", project.description);
               formData.append("proj_link", project.link);
-              formData.append("proj_cover_image", project.cover_image!); // the File object
+              
+              if (project.cover_image) {
+                formData.append("proj_cover_image", project.cover_image);
+              }
+
               project.techStack.forEach((tech) =>
                 formData.append("proj_tech_stack", tech));
 

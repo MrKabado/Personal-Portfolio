@@ -7,7 +7,6 @@ const baseURL = process.env.NODE_ENV === 'production' ? prodBase : localBase;
 const api = axios.create({
   baseURL,
   withCredentials: true,
-  headers: { 'Content-Type': 'application/json' },
 });
 
 const refreshAcessToken = async () => {

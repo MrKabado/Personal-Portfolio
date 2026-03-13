@@ -143,14 +143,25 @@ export const getAllRecentTasks = async (req, res) => {
 };
 
 export const addProject = async (req, res) => {
+  console.log("CLODUINARY NAME: " + process.env.CLOUDINARY_CLOUD_NAME);
   try {
     const { proj_title, proj_description, proj_link } = req.body;
 
-    const proj_tech_stack = Array.isArray(req.body.proj_tech_stack)
-      ? req.body.proj_tech_stack
-      : [req.body.proj_tech_stack];
+    if (!proj_title || !proj_description) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields: proj_title, proj_description",
+      });
+    }
 
-    const coverImage = process.env.DEFAULT_COVER_IMAGE_URL;
+    const rawTechStack = req.body.proj_tech_stack;
+    const proj_tech_stack = Array.isArray(rawTechStack)
+      ? rawTechStack.filter(Boolean)
+      : rawTechStack
+        ? [rawTechStack]
+        : [];
+
+    let coverImage = process.env.DEFAULT_COVER_IMAGE_URL || null;
 
     if (req.file) {
       const uploadResult = await uploadToCloudinary(
@@ -158,19 +169,19 @@ export const addProject = async (req, res) => {
         "Portfolio-Project-Images",
         proj_title.replace(/\s+/g, "_"),
       );
-      coverImage = uploadResult;
+      coverImage = uploadResult?.secure_url ?? uploadResult?.url ?? coverImage;
     }
 
     const newProject = {
       title: proj_title,
       description: proj_description,
-      link: proj_link,
+      link: proj_link || null,
       techStack: proj_tech_stack,
       coverImage: coverImage,
       createdAt: new Date(),
     };
 
-    res.json({
+    return res.status(201).json({
       success: true,
       data: newProject,
     });
