@@ -7,11 +7,11 @@ export function ButtonSubmit({ props }: any) {
   return (
     <div>
       {!submitted ? (
-        <Button type={props.buttonType} size="lg" className={`bg-indigo-600 hover:bg-indigo-700 text-white ${props.className}`} onClick={props.btnOnClick}>
+        <Button type={props.buttonType} className={`bg-black hover:bg-[#333333] text-gray-100 cursor-pointer ${props.className}`} onClick={props.btnOnClick}>
           {props.btnText}
         </Button>
       ):(
-        <Button type={props.buttonType} size="lg" disabled className={`bg-indigo-600 text-white ${props.className}`} onClick={props.btnOnClick}>
+        <Button type={props.buttonType} disabled className={`bg-[#333333] text-white ${props.className}`} onClick={props.btnOnClick}>
           <Spinner className="mr-2 h-4 w-4 animate-spin" />
           {props.btnLoadingText}...
         </Button>

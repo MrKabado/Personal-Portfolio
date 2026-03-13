@@ -3,6 +3,7 @@ import { Field, FieldGroup } from "../ui/field";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { ButtonSubmit } from "./Button";
 import {
   DialogClose,
   DialogFooter,
@@ -27,6 +28,7 @@ type Props = {
   defaultDescription?: string;
   defaultCoverImage?: string;
   defaultLink?: string;
+  submitted: boolean;
 };
 
 export default function InsertProjectModal({
@@ -35,6 +37,8 @@ export default function InsertProjectModal({
   defaultDescription = "",
   defaultCoverImage = "",
   defaultLink = "",
+  submitted=false,
+
 }: Props) {
   const [projectTitle, setProjectTitle] = useState<string>(defaultTitle);
   const [projectDescription, setProjectDescription] = useState<string>(defaultDescription);
@@ -74,7 +78,7 @@ export default function InsertProjectModal({
 
       <FieldGroup className="overflow-y-auto">
         <Field>
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="title">Title<span className="text-red-600">*</span></Label>
           <Input
             id="title"
             name="title"
@@ -85,7 +89,7 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">Description<span className="text-red-600">*</span></Label>
           <Input
             id="description"
             name="description"
@@ -111,7 +115,7 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label className="mb-2">Tech Stack</Label>
+          <Label className="mb-2">Tech Stack<span className="text-red-600">*</span></Label>
           <div className="grid grid-cols-4 gap-2">
             {[
               "Next.js",
@@ -141,7 +145,7 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label htmlFor="web-link">Website Link</Label>
+          <Label htmlFor="web-link">Website Link<span className="text-red-600">*</span></Label>
           <Input
             id="web-link"
             name="web-link"
@@ -156,9 +160,16 @@ export default function InsertProjectModal({
         <DialogClose asChild>
           <Button variant="outline">Cancel</Button>
         </DialogClose>
-        <Button type="button" onClick={handleSubmit}>
-          Save changes
-        </Button>
+        <ButtonSubmit 
+          props={{
+            btnOnClick: handleSubmit,
+            submitted: submitted,
+            buttonType: "button",
+            btnText: "Save Changes",
+            btnLoadingText: "Saving Changes"
+          }}
+        />
+
       </DialogFooter>
     </>
   );

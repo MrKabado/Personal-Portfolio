@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import InserProjectModal from "@/components/common/InsertProjectModal";
 import { useState } from "react";
 import api from "@/lib/api";
+import { toast } from "sonner";
 
 type ProjectData = {
   title: string;
@@ -17,6 +18,7 @@ type ProjectData = {
 };
 
 export default function ProjectsPage() {
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const handleTechStackChange = (techStack: string[]) => {
     console.log("Selected Tech Stack:", techStack);
   };
@@ -37,7 +39,19 @@ export default function ProjectsPage() {
 
         <DialogContent className="max-w-md h-120 w-full">
           <InserProjectModal
+            submitted={submitted}
             onSave={async (project) => {
+              if (
+                !project.title.trim() ||
+                !project.description.trim() ||
+                !project.link.trim() ||
+                project.techStack.length === 0
+              ) {
+                toast.error("Please input the required fields");
+                return;
+              }
+
+              setSubmitted(true);
               console.log("Project submitted:", project);
               handleSubmitProject(project);
 
@@ -45,13 +59,14 @@ export default function ProjectsPage() {
               formData.append("proj_title", project.title);
               formData.append("proj_description", project.description);
               formData.append("proj_link", project.link);
-              
+
               if (project.cover_image) {
                 formData.append("proj_cover_image", project.cover_image);
               }
 
               project.techStack.forEach((tech) =>
-                formData.append("proj_tech_stack", tech));
+                formData.append("proj_tech_stack", tech),
+              );
 
               try {
                 const response = await api.post(
@@ -60,7 +75,9 @@ export default function ProjectsPage() {
                 );
 
                 console.log("Uploaded: ", response.data);
+                setSubmitted(false);
               } catch (error) {
+                setSubmitted(false);
                 console.error("Upload failed:", error);
               }
             }}
