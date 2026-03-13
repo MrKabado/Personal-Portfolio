@@ -36,12 +36,12 @@ export default function InsertProjectModal({
   defaultTitle = "",
   defaultDescription = "",
   defaultCoverImage = "",
-  defaultLink = "",
-  submitted=false,
-
+  defaultLink="",
+  submitted = false,
 }: Props) {
   const [projectTitle, setProjectTitle] = useState<string>(defaultTitle);
-  const [projectDescription, setProjectDescription] = useState<string>(defaultDescription);
+  const [projectDescription, setProjectDescription] =
+    useState<string>(defaultDescription);
   const [projectLink, setProjectLink] = useState<string>(defaultLink);
   const [projectCoverImage, setProjectCoverImage] = useState<File | null>(null);
   const [techStack, setTechStack] = useState<string[]>([]);
@@ -49,7 +49,7 @@ export default function InsertProjectModal({
   const handleCheckboxChange = (tech: string, checked: boolean) => {
     const updatedStack = checked
       ? [...techStack, tech]
-      : techStack.filter(t => t !== tech);
+      : techStack.filter((t) => t !== tech);
 
     setTechStack(updatedStack);
   };
@@ -68,7 +68,7 @@ export default function InsertProjectModal({
     <>
       <DialogHeader>
         <DialogTitle className="font-semibold text-xl">
-          Add new project 
+          Add new project
         </DialogTitle>
         <DialogDescription>
           Fill in the required details below to create a new project. Click save
@@ -78,7 +78,9 @@ export default function InsertProjectModal({
 
       <FieldGroup className="overflow-y-auto">
         <Field>
-          <Label htmlFor="title">Title<span className="text-red-600">*</span></Label>
+          <Label htmlFor="title">
+            Title<span className="text-red-600">*</span>
+          </Label>
           <Input
             id="title"
             name="title"
@@ -89,7 +91,9 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label htmlFor="description">Description<span className="text-red-600">*</span></Label>
+          <Label htmlFor="description">
+            Description<span className="text-red-600">*</span>
+          </Label>
           <Input
             id="description"
             name="description"
@@ -101,7 +105,7 @@ export default function InsertProjectModal({
 
         <Field>
           <Label>Cover Image</Label>
-          <Input 
+          <Input
             type="file"
             id="project_cover_image"
             name="proj_cover_image"
@@ -115,7 +119,9 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label className="mb-2">Tech Stack<span className="text-red-600">*</span></Label>
+          <Label className="mb-2">
+            Tech Stack<span className="text-red-600">*</span>
+          </Label>
           <div className="grid grid-cols-4 gap-2">
             {[
               "Next.js",
@@ -145,7 +151,9 @@ export default function InsertProjectModal({
         </Field>
 
         <Field>
-          <Label htmlFor="web-link">Website Link<span className="text-red-600">*</span></Label>
+          <Label htmlFor="web-link">
+            Website Link<span className="text-red-600">*</span>
+          </Label>
           <Input
             id="web-link"
             name="web-link"
@@ -160,16 +168,16 @@ export default function InsertProjectModal({
         <DialogClose asChild>
           <Button variant="outline">Cancel</Button>
         </DialogClose>
-        <ButtonSubmit 
-          props={{
-            btnOnClick: handleSubmit,
-            submitted: submitted,
-            buttonType: "button",
-            btnText: "Save Changes",
-            btnLoadingText: "Saving Changes"
-          }}
-        />
-
+          <ButtonSubmit
+            props={{
+              btnOnClick: handleSubmit,
+              submitted: submitted,
+              buttonType: "button",
+              btnText: "Save Changes",
+              btnLoadingText: "Saving Changes",
+              className: "w-full",
+            }}
+          />
       </DialogFooter>
     </>
   );

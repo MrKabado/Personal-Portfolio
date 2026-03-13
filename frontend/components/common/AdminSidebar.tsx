@@ -5,7 +5,7 @@ export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
   const SidebarNav = [
     { name: "Dashboard", icon: LayoutDashboard, link: "dashboard" },
     { name: "Projects", icon: Folder, link: "projects" },
-    { name: "Contacts/Messages", icon: MessageSquare, link: "contacts" },
+    { name: "Contacts/Messages", icon: MessageSquare, link: "messages" },
   ];
 
   return (

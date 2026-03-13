@@ -30,13 +30,16 @@ export default function DashboardPage() {
   }, []);
 
   const [recentTasks, setRecentTasks] = useState<any[]>([])
+  const [projects, setProjects] = useState<any[]>([]);
 
   useEffect(() => {
     const getAllRecentTasks = async () => {
       try {
         const response = await api.get('/api/admin/recent-tasks');
         setRecentTasks(response.data.data);
-        console.log(response.data.data);
+
+        const response2 = await api.get('/api/admin/projects');
+        setProjects(response2.data.data)
       } catch (error: any) {
         console.log(error);
         return;
@@ -49,9 +52,8 @@ export default function DashboardPage() {
 
   const KeyStats = [
 
-    {name: "Total Projects", value: 5},
-    {name: "Total Messages", value: recentTasks.length},
-    {name: "New Messages", value: 2},
+    {name: "Total Projects", value: projects.length},
+    {name: "Total Messages", value: recentTasks.length}
   ]
 
   const recentTasksDo = [
@@ -80,7 +82,7 @@ export default function DashboardPage() {
           {
             recentTasks.map((task) => (
               <div key={task.id} className="flex justify-between py-1 px-3 shadow-sm rounded-md 
-                bg-gray-100 cursor-default transform hover:scale-103 transition-all duration-200 border-transparent
+                bg-gray-100 transform hover:bg-gray-200 cursor-pointer transition-all duration-200 border-transparent
                   hover:border-red-500 border-l-4">
                 <h1 className="font-medium">{task.action_type}</h1>
                 <p>{task.description}</p>

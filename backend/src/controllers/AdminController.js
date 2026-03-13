@@ -2,6 +2,9 @@ import {
   addClientMessage,
   addNewActivityLog,
   getAllRecentTask,
+  addNewProject,
+  getAllProjects,
+  getAllMessages
 } from "../models/AdminModel.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 import { upload, uploadToCloudinary } from "../utils/cloudinary.js";
@@ -172,18 +175,27 @@ export const addProject = async (req, res) => {
       coverImage = uploadResult?.secure_url ?? uploadResult?.url ?? coverImage;
     }
 
-    const newProject = {
-      title: proj_title,
-      description: proj_description,
-      link: proj_link || null,
-      techStack: proj_tech_stack,
-      coverImage: coverImage,
-      createdAt: new Date(),
-    };
+    const addProject = await addNewProject({
+      proj_title,
+      proj_description,
+      proj_link,
+      coverImage,
+      proj_tech_stack: JSON.stringify(proj_tech_stack),
+    });
+
+    //Add activity log for a new project added
+    const action_type = `Added new project`;
+    const description = `You added a new project titled "${proj_title}" to your portfolio.`;
+    const target_table = "Projects";
+    await addNewActivityLog({
+      action_type,
+      description,
+      target_table,
+    })
 
     return res.status(201).json({
       success: true,
-      data: newProject,
+      data: addProject,
     });
   } catch (error) {
     console.log(error);
@@ -193,3 +205,39 @@ export const addProject = async (req, res) => {
     });
   }
 };
+
+export const getProjects = async (req, res) => {
+  try {
+    const projects = await getAllProjects();
+
+    res.status(200).json({
+      success: true,
+      data: projects
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error in getting all the projects",
+      success: false,
+    })
+  }
+}
+
+export const getMessages = async (req, res) => {
+  try {
+    const contacts = await getAllMessages();
+
+    res.status(200).json({
+      success: true,
+      data: contacts
+    })
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error in getting all messages/contacts",
+      success: false,
+    })
+  }
+}
