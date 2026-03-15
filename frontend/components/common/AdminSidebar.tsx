@@ -1,9 +1,10 @@
-import { LayoutDashboard, Folder, MessageSquare, LogOut } from "lucide-react";
+import { LayoutDashboard, Folder, MessageSquare, LogOut, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
   const SidebarNav = [
     { name: "Dashboard", icon: LayoutDashboard, link: "dashboard" },
+    { name: "Recent Tasks", icon: CheckCircle, link: "recentTask" },
     { name: "Projects", icon: Folder, link: "projects" },
     { name: "Contacts/Messages", icon: MessageSquare, link: "messages" },
   ];

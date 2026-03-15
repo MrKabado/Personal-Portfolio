@@ -1,6 +1,8 @@
 "use client";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type Messages = {
   fname: string;
@@ -11,6 +13,26 @@ type Messages = {
 
 export default function MessagesPage() {
   const [messages, setMessages] = useState<Messages[]>([]);
+    const router = useRouter();
+  
+    useEffect(() => {
+      const verifyAdmin = async () => {
+        try {
+          const response = await api.get('/api/verify-admin');
+          if (response.data.authorized !== true) {
+            toast.error(response.data.message);
+            router.push('/admin');
+          }
+  
+        } catch (error:any) {
+          toast.error(error.response?.data?.message || "Unauthorized");
+          console.log(error);
+          router.push('/admin');
+        }
+      }
+  
+      verifyAdmin();
+    }, []);
 
   useEffect(() => {
     const getMessages = async () => {

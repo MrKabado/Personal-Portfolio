@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Globe } from "lucide-react";
+import { Globe, Pencil, Trash2 } from "lucide-react";
 
 type Props = {
   ImageSrc: string;
@@ -9,6 +9,7 @@ type Props = {
   ProjectDescription: string;
   ProjectStack: string[];
   ProjectLink: string;
+  isAdmin: boolean;
 };
 
 export default function ProjectCard({
@@ -18,12 +19,15 @@ export default function ProjectCard({
   ProjectDescription,
   ProjectStack,
   ProjectLink,
+  isAdmin
 }: Props) {
-
   return (
     <div className="shadow-[0_0_4px_rgba(0,0,0,0.3)] bg- rounded-md hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-shadow duration-200 cursor-pointer">
       <Image
-        src={ImageSrc || "https://res.cloudinary.com/dedef9fpx/image/upload/v1772987691/fd22bff2-ab37-4436-8cd3-6c1e87f2ec87.png"}
+        src={
+          ImageSrc ||
+          "https://res.cloudinary.com/dedef9fpx/image/upload/v1772987691/fd22bff2-ab37-4436-8cd3-6c1e87f2ec87.png"
+        }
         alt={ImageAlt || "Image Title"}
         className="object-cover rounded-t-md"
         width={400}
@@ -33,7 +37,13 @@ export default function ProjectCard({
 
       <div className="p-2">
         <div className="flex flex-col gap-2">
-          <h1 className="text-xl font-semibold">{ProjectTitle}</h1>
+          <div className="flex justify-between">
+            <h1 className="text-xl font-semibold">{ProjectTitle}</h1>
+            <div className={`flex justify-end gap-2 ${isAdmin ? "block" : "hidden"}`}>
+              <Pencil className="w-5 text-blue-800 hover:text-blue-300" />
+              <Trash2 className="w-5 text-red-800 hover:text-red-300" />
+            </div>
+          </div>
           <p className="text-[12px] font-normal text-gray-600 leading-4 text-justify">
             {ProjectDescription}
           </p>

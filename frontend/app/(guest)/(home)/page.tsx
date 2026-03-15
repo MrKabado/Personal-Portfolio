@@ -83,6 +83,7 @@ export default function HomePage() {
         {/* PROJECT CARD HOLDER */}
         <ProjectHolder 
           limit={true}
+          isAdmin={false}
         />
       </div>
     </div>

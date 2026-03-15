@@ -18,15 +18,16 @@ type ProjectData = {
 
 type Props = {
   limit: boolean;
+  isAdmin: boolean;
 };
 
-export default function ProjectHolder({ limit }: Props) {
+export default function ProjectHolder({ limit, isAdmin }: Props) {
   const [projects, setProjects] = useState<ProjectData[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await api.get("/api/admin/projects");
+        const response = await api.get("/api/projects");
         console.log("GET PROJECTS:", response.data.data);
         setProjects(response.data.data);
       } catch (error) {
@@ -66,6 +67,7 @@ export default function ProjectHolder({ limit }: Props) {
                   ProjectDescription={project.description}
                   ProjectStack={project.techstacks || []}
                   ProjectLink={project.web_link}
+                  isAdmin={isAdmin}
                 />
               </div>
             ))}

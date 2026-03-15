@@ -13,6 +13,7 @@ export default function ProjectsPage() {
 
     <ProjectHolder 
       limit={false}
+      isAdmin={false}
     />
     </div>
   );

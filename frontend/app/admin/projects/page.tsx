@@ -1,13 +1,13 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import ProjectCard from "@/components/common/ProjectCard";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import InserProjectModal from "@/components/common/InsertProjectModal";
 import { useState, useEffect } from "react";
 import api from "@/lib/api";
 import { toast } from "sonner";
 import ProjectHolder from "@/components/common/ProjectHolder";
+import { useRouter } from "next/navigation";
 
 type ProjectData = {
   id: number;
@@ -23,26 +23,31 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
-  // Fetch projects on mount
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await api.get("/api/admin/projects");
-        console.log("GET PROJECTS:", response.data.data);
-        setProjects(response.data.data);
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-      }
-    };
-
-    fetchProjects();
-
-  }, []);
-
   // Handle adding a new project locally
   const handleSubmitProject = (newProject: ProjectData) => {
     setProjects((prev) => [...prev, newProject]);
   };
+
+    const router = useRouter();
+  
+    useEffect(() => {
+      const verifyAdmin = async () => {
+        try {
+          const response = await api.get('/api/verify-admin');
+          if (response.data.authorized !== true) {
+            toast.error(response.data.message);
+            router.push('/admin');
+          }
+  
+        } catch (error:any) {
+          toast.error(error.response?.data?.message || "Unauthorized");
+          console.log(error);
+          router.push('/admin');
+        }
+      }
+  
+      verifyAdmin();
+    }, []);
 
   return (
     <div className="admin-default-div flex flex-col">
@@ -102,6 +107,7 @@ export default function ProjectsPage() {
 
       <ProjectHolder 
         limit={false}
+        isAdmin={true}
       />
     </div>
   );

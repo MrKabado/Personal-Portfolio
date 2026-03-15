@@ -19,7 +19,7 @@ export default function Code() {
     }
 
     verifyAdmin();
-  })
+  }, []);
 
   const verifySecretKey = async (e: any) => {
     e.preventDefault();
