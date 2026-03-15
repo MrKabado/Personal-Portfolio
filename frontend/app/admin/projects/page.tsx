@@ -7,7 +7,7 @@ import InserProjectModal from "@/components/common/InsertProjectModal";
 import { useState, useEffect } from "react";
 import api from "@/lib/api";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import ProjectHolder from "@/components/common/ProjectHolder";
 
 type ProjectData = {
   id: number;
@@ -100,41 +100,9 @@ export default function ProjectsPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Projects Grid */}
-      <div className="mt-10">
-        
-
-        {
-          projects.length == 0 
-          ?
-          <div>
-            <h1 className="text-lg italic text-gray-400">It looks like you haven’t added any projects yet. Start by creating your first project!</h1>
-          </div>
-          :
-          <>
-          <h1 className="font-medium text-lg">All Projects</h1>
-          <div className="grid grid-cols-3 mt-10 mb-5 gap-4">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="cursor-pointer"
-              onClick={() => window.open(project.web_link, "_blank", "noopener,noreferrer")}
-            >
-              <ProjectCard
-                ImageSrc={project.image || "/placeholder.png"}
-                ImageAlt={`${project.title} cover image`}
-                ProjectTitle={project.title}
-                ProjectDescription={project.description}
-                ProjectStack={project.techstacks || []}
-                ProjectLink={project.web_link}
-              />
-            </div>
-          ))}
-        </div>
-        </>
-        }
-        
-      </div>
+      <ProjectHolder 
+        limit={false}
+      />
     </div>
   );
 }

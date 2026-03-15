@@ -34,7 +34,7 @@ export default function ProjectCard({
       <div className="p-2">
         <div className="flex flex-col gap-2">
           <h1 className="text-xl font-semibold">{ProjectTitle}</h1>
-          <p className="text-[12px] font-normal text-gray-600 leading-4">
+          <p className="text-[12px] font-normal text-gray-600 leading-4 text-justify">
             {ProjectDescription}
           </p>
         </div>

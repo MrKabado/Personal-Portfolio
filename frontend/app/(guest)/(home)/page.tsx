@@ -5,6 +5,7 @@ import Profile from "../../../assets/profile.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import ProjectCard from "@/components/common/ProjectCard";
+import ProjectHolder from "@/components/common/ProjectHolder";
 
 export default function HomePage() {
   const icons = [
@@ -80,16 +81,9 @@ export default function HomePage() {
         </div>
 
         {/* PROJECT CARD HOLDER */}
-        <div className="grid grid-cols-3 mt-10 mb-5 gap-4">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-        </div>
-
-        <Link href={"/about"} className="flex items-center text-gray-800 gap-1">
-          <h1 className="text-md font-semibold">More Projects</h1>
-          <ArrowRight className="w-5" />
-        </Link>
+        <ProjectHolder 
+          limit={true}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import ProjectCard from "@/components/common/ProjectCard";
+import ProjectHolder from "@/components/common/ProjectHolder";
 
 export default function ProjectsPage() {
   return (
@@ -11,11 +11,9 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 mt-10 mb-5 gap-4">
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-      </div>
+    <ProjectHolder 
+      limit={false}
+    />
     </div>
   );
 }
