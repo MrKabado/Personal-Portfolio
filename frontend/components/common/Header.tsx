@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 type HeaderProps = {
-  isVisited: string,
+  isVisited: string;
   setIsVisited: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -20,7 +20,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
     { name: "Home", link: "" },
     { name: "About", link: "about" },
     { name: "Projects", link: "projects" },
-    { name: "Blogs", link: "blog" },
+    // { name: "Blogs", link: "blog" },
     { name: "Contact", link: "contact" },
   ];
 
@@ -45,7 +45,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
     <header
       className={`
         fixed top-0 left-0 w-full z-50
-        px-6 md:px-34 py-3
+        px-6 md:px-16 lg:px-34 py-3
         shadow-md bg-white/50 backdrop-blur-lg
         transition-transform duration-300 ease-in-out
         ${hidden ? "-translate-y-full" : "translate-y-0"}
@@ -54,7 +54,9 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
       <div className="flex items-center justify-between">
         {/* Logo / Name */}
         <div className="flex flex-col">
-          <h1 className="font-semibold text-lg text-gray-700">Jerson Jay Bonghanoy</h1>
+          <h1 className="font-semibold text-lg text-gray-700">
+            Jerson Jay Bonghanoy
+          </h1>
           <h1 className="text-gray-500 text-sm">Aspiring Dev</h1>
         </div>
 
@@ -66,7 +68,8 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
                 key={item.name}
                 className={`
                   ${
-                    pathname === `/${item.link}` || (item.link === "" && pathname === "/")
+                    pathname === `/${item.link}` ||
+                    (item.link === "" && pathname === "/")
                       ? "bg-gray-100 text-black"
                       : "bg-transparent text-gray-500"
                   }
@@ -85,12 +88,10 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-2xl"
-        >
-          ☰
-        </button>
+        <div className="md:hidden text-2xl flex gap-4">
+          <ModeToggle />
+          <button onClick={() => setOpen(!open)}>☰</button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -101,10 +102,12 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
               <li
                 key={item.name}
                 onClick={() => setOpen(false)}
+                
                 className={`
                   ${
-                    pathname === `/${item.link}` || (item.link === "" && pathname === "/")
-                      ? "bg-red-700 text-white"
+                    pathname === `/${item.link}` ||
+                    (item.link === "../../../app" && pathname === "/")
+                      ? "bg-black text-white"
                       : "bg-gray-100"
                   }
                   text-sm cursor-pointer rounded-sm

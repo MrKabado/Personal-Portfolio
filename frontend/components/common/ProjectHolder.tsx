@@ -5,6 +5,7 @@ import ProjectCard from "./ProjectCard";
 import api from "../../lib/api";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Container from "./Container";
 
 type ProjectData = {
   id: number;
@@ -19,9 +20,10 @@ type ProjectData = {
 type Props = {
   limit: boolean;
   isAdmin: boolean;
+  isHome: boolean;
 };
 
-export default function ProjectHolder({ limit, isAdmin }: Props) {
+export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
   const [projects, setProjects] = useState<ProjectData[]>([]);
 
   useEffect(() => {
@@ -39,19 +41,44 @@ export default function ProjectHolder({ limit, isAdmin }: Props) {
   }, []);
   return (
     <div className="mt-10">
+      {isHome && (
+        <div className="mt-16 md:mt-32 lg:mt-40">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h1 className="text-sm md:text-md bg-gray-200 rounded-md px-2 py-1 w-fit">
+              Recent Projects
+            </h1>
+
+            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl leading-tight">
+              Check out my recent work
+            </h1>
+
+            <p className="text-sm sm:text-base text-gray-700 max-w-xl">
+              I’ve worked on a variety of projects, from simple websites to
+              <br className="hidden sm:block" /> complex web applications. Here
+              are a few of my favorites.
+            </p>
+          </div>
+        </div>
+      )}
+
       {projects.length == 0 ? (
-        <div>
-          <h1 className="text-lg italic text-gray-400">
+        <div className="mt-10 text-center">
+          <h1 className="text-base md:text-lg italic text-gray-400">
             It looks like you haven’t added any projects yet. Start by creating
             your first project!
           </h1>
         </div>
       ) : (
         <>
-          <h1 className={`font-medium text-lg ${limit ? "hidden" : "block"}`}>
+          <h1
+            className={`font-medium text-base md:text-lg mt-10 ${
+              limit ? "hidden" : "block"
+            }`}
+          >
             All Projects
           </h1>
-          <div className="grid grid-cols-3 mt-10 mb-5 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6">
             {(limit ? projects : projects.slice(0, 3)).map((project) => (
               <div
                 key={project.id}
@@ -75,9 +102,11 @@ export default function ProjectHolder({ limit, isAdmin }: Props) {
 
           <Link
             href={"/about"}
-            className={`flex items-center text-gray-800 gap-1 ${!limit ? "hidden" : "block"}`}
+            className={`flex items-center justify-center md:justify-start text-gray-800 gap-1 ${
+              !limit ? "hidden" : "flex"
+            }`}
           >
-            <h1 className="text-md font-semibold">More Projects</h1>
+            <h1 className="text-sm md:text-md font-semibold">More Projects</h1>
             <ArrowRight className="w-5" />
           </Link>
         </>

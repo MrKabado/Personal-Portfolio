@@ -15,9 +15,8 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { div, p } from "framer-motion/client";
 import { useState } from "react";
-import Link from "next/link";
+import Container from "@/components/common/Container";
 
 type SocialType = {
   name: string;
@@ -26,9 +25,17 @@ type SocialType = {
 
 export default function AboutPage() {
   const Socials = [
-    { name: "LinkedIn", icon: Linkedin, link: "https://www.linkedin.com/in/bonghanoy-jerson-jay-49b205378/" },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      link: "https://www.linkedin.com/in/bonghanoy-jerson-jay-49b205378/",
+    },
     { name: "Github", icon: Github, link: "https://github.com/MrKabado" },
-    { name: "Facebook", icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy" },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      link: "https://www.facebook.com/jersonjay.bonghanoy",
+    },
   ];
 
   const Contacts = [
@@ -37,7 +44,18 @@ export default function AboutPage() {
     "Cebu, Philippines",
   ];
 
+  const Achievements = [
+    "With Honors – Senior High School (MSHS, 2023)",
+    "Creative Web Design NCIII - TESDA Certification (2025)",
+    "JAVA Programming NCIII - TESDA Certification (2024)",
+  ];
+
   const Experience = [
+    {
+      heading: "Studied (Transferred)",
+      where: "University of Cebu - LM",
+      when: "Sep. 2023 - Dec. 2023",
+    },
     {
       heading: "Studying",
       where: "Cordova Public College",
@@ -55,6 +73,7 @@ export default function AboutPage() {
     "CSS3",
     "ShadCN",
   ];
+
   const backend = ["Express.js", "REST"];
   const authentication = ["JWT"];
   const database = ["MongoDB", "MySQL", "Neon"];
@@ -64,44 +83,42 @@ export default function AboutPage() {
   const [moreTechStacks, setMoreTechStacks] = useState(false);
 
   return (
-    <div className="default-div">
-      {/* heading w/ image */}
+    <Container>
       <div>
         <Image
           src={Images.BackgroundImage}
           alt={"Background Image"}
-          className="w-full h-60 object-cover rounded-2xl"
+          className="w-full h-40 sm:h-52 md:h-60 object-cover rounded-2xl"
         />
 
-        <div className="ml-10 -mt-20 flex flex-row items-end">
+        <div className="ml-4 sm:ml-10 -mt-16 sm:-mt-20 flex flex-col sm:flex-row sm:items-end items-center text-center sm:text-left gap-2">
           <div className="border-4 border-blue-600 rounded-full p-0.5">
             <Image
               src={Images.Profile}
               alt={"Profile Picture"}
-              className="w-40 rounded-full"
+              className="w-28 sm:w-32 md:w-40 rounded-full"
             />
           </div>
 
-          <div className="mx-4 mb-4">
-            <h1 className="text-2xl font-semibold text-gray-800">
+          <div className="sm:mx-4 sm:mb-4">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800">
               Jerson Bonghanoy
             </h1>
-            <p className="text-gray-600 text-md italic">
+            <p className="text-gray-600 text-sm sm:text-md italic">
               Aspiring Web Developer
             </p>
           </div>
         </div>
       </div>
 
-      {/* about and experience */}
-      <div className="flex flex-row gap-4 my-10">
-        <div className="w-[80%] border border-transparent shadow-[0_0_1px_gray] p-5 rounded-md">
+      <div className="flex flex-col lg:flex-row gap-6 my-10">
+        <div className="w-full lg:w-[75%] border border-transparent shadow-[0_0_1px_gray] p-4 sm:p-5 rounded-md">
           <div className="flex items-center mb-5 gap-1">
-            <BriefcaseBusiness className="w-8" />
-            <h1 className="text-xl font-semibold">About</h1>
+            <BriefcaseBusiness className="w-6 sm:w-8" />
+            <h1 className="text-lg sm:text-xl font-semibold">About</h1>
           </div>
 
-          <p className="text-justify">
+          <p className="text-sm sm:text-base text-justify">
             Hi there, I’m
             <span className="border border-gray-200 mx-2 text-xs p-1 rounded-md">
               Jerson Jay Bonghanoy
@@ -132,14 +149,14 @@ export default function AboutPage() {
             supporting my family.
           </p>
 
-          <div className="my-4 flex gap-10">
+          <div className="my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div>
               <h1 className="text-lg font-semibold text-gray-700 mb-2">
                 Socials
               </h1>
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-3">
                 {Socials.map(({ icon: Icon, name, link }, i) => (
-                    <li
+                  <li
                     className="text-sm flex gap-2 items-center cursor-pointer hover:text-gray-600"
                     key={i}
                     onClick={() => window.open(`${link}`)}
@@ -155,7 +172,7 @@ export default function AboutPage() {
               <h1 className="text-lg font-semibold text-gray-700 mb-2">
                 Contact
               </h1>
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-3">
                 {Contacts.map((contact, i) => (
                   <li
                     key={i}
@@ -166,27 +183,44 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
+
+            <div>
+              <h1 className="text-lg font-semibold text-gray-700 mb-2">
+                Achievements
+              </h1>
+              <ul className="flex flex-col gap-3">
+                {Achievements.map((achieve, i) => (
+                  <li
+                    key={i}
+                    className="text-sm flex gap-2 items-center cursor-pointer hover:text-gray-600"
+                  >
+                    {achieve}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <Button className="mt-2 cursor-pointer">Download Resume</Button>
+          <Button className="mt-2 w-full sm:w-auto">Download Resume</Button>
         </div>
 
-        <div className="w-[20%] border border-transparent shadow-[0_0_1px_gray] py-5 pl-5 rounded-md">
+        <div className="w-full lg:w-[25%] border border-transparent shadow-[0_0_1px_gray] py-5 px-4 rounded-md">
           <div className="flex items-center mb-5 gap-1">
-            <Building2 className="w-8" />
-            <h1 className="text-xl font-semibold">Experience</h1>
+            <Building2 className="w-6 sm:w-8" />
+            <h1 className="text-lg sm:text-xl font-semibold">Experience</h1>
           </div>
 
           <div className="relative px-4">
-            {/* vertical line */}
-            <span className="absolute left-1.75 top-4 bottom-0 w-px bg-gray-300" />
+            <span className="absolute left-1.5 top-4 bottom-0 w-px bg-gray-300" />
 
             {Experience.map(({ heading, where, when }, i) => (
               <div className="flex items-start gap-2 -mx-3.5" key={i}>
                 <Circle className="w-3 h-3 shrink-0 bg-white hover:bg-black rounded-full z-10" />
 
                 <div className="flex flex-col gap-2 mb-5">
-                  <h1 className="font-semibold text-md">{heading}</h1>
+                  <h1 className="font-semibold text-sm sm:text-md">
+                    {heading}
+                  </h1>
                   <p className="text-xs text-gray-600">{where}</p>
                   <p className="px-1 py-0.5 text-[10px] w-fit rounded-lg bg-gray-100 shadow-[0_0_1px_gray]">
                     {when}
@@ -198,115 +232,69 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="w-full border border-transparent shadow-[0_0_1px_gray] p-5 rounded-md">
+      <div className="w-full border border-transparent shadow-[0_0_1px_gray] p-4 sm:p-5 rounded-md">
         <div className="flex flex-row items-center gap-2 mb-5">
           <Code className="w-5" />
-          <h1 className="font-semibold text-[22px]">Tech Stacks</h1>
+          <h1 className="font-semibold text-lg sm:text-[22px]">Tech Stacks</h1>
         </div>
 
-        <div className="flex flex-col gap-3 mb-4">
-          <h1 className="font-semibold text-gray-800">Frontend</h1>
-          <div className="flex gap-3">
-            {frontend.map((tech, i) => (
-              <p
-                key={i}
-                className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-              >
-                {tech}
-              </p>
-            ))}
+        {[
+          { title: "Frontend", data: frontend },
+          { title: "Backend", data: backend },
+          { title: "Authentication & Security", data: authentication },
+        ].map((section, idx) => (
+          <div key={idx} className="flex flex-col gap-3 mb-4">
+            <h1 className="font-semibold text-gray-800">{section.title}</h1>
+            <div className="flex flex-wrap gap-2">
+              {section.data.map((tech, i) => (
+                <p
+                  key={i}
+                  className="text-gray-800 text-xs sm:text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
+                >
+                  {tech}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div className="flex flex-col gap-3 mb-4">
-          <h1 className="font-semibold text-gray-800">Backend</h1>
-          <div className="flex gap-3">
-            {backend.map((tech, i) => (
-              <p
-                key={i}
-                className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-              >
-                {tech}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3 mb-4">
-          <h1 className="font-semibold text-gray-800">
-            Authentication & Security
-          </h1>
-          <div className="flex gap-3">
-            {authentication.map((tech, i) => (
-              <p
-                key={i}
-                className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-              >
-                {tech}
-              </p>
-            ))}
-          </div>
-        </div>
+        ))}
 
         {moreTechStacks && (
           <>
-            <div className="flex flex-col gap-3 mb-4">
-              <h1 className="font-semibold text-gray-800">Database</h1>
-              <div className="flex gap-3">
-                {database.map((tech, i) => (
-                  <p
-                    key={i}
-                    className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-                  >
-                    {tech}
-                  </p>
-                ))}
+            {[
+              { title: "Database", data: database },
+              { title: "Cloud & Hosting", data: cloudHosting },
+              { title: "Developer Tools", data: developerTools },
+            ].map((section, idx) => (
+              <div key={idx} className="flex flex-col gap-3 mb-4">
+                <h1 className="font-semibold text-gray-800">{section.title}</h1>
+                <div className="flex flex-wrap gap-2">
+                  {section.data.map((tech, i) => (
+                    <p
+                      key={i}
+                      className="text-gray-800 text-xs sm:text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
+                    >
+                      {tech}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="flex flex-col gap-3 mb-4">
-              <h1 className="font-semibold text-gray-800">Cloud & Hosting</h1>
-              <div className="flex gap-3">
-                {cloudHosting.map((tech, i) => (
-                  <p
-                    key={i}
-                    className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-                  >
-                    {tech}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3 mb-4">
-              <h1 className="font-semibold text-gray-800">Developer Tools</h1>
-              <div className="flex gap-3">
-                {developerTools.map((tech, i) => (
-                  <p
-                    key={i}
-                    className="text-gray-800 text-[13px] shadow-[0_0_1px_gray] py-1 px-2 rounded-sm"
-                  >
-                    {tech}
-                  </p>
-                ))}
-              </div>
-            </div>
+            ))}
           </>
         )}
 
         <button
-          className="flex flex-row font-semibold text-gray-800 justify-center items-center gap-1 text-[14px] 
-  shadow-[0_0_1px_gray] py-1 px-2 rounded-md hover:bg-gray-100 mt-7 cursor-pointer"
+          className="flex font-semibold text-gray-800 justify-center items-center gap-1 text-[14px] 
+      shadow-[0_0_1px_gray] py-1 px-3 rounded-md hover:bg-gray-100 mt-7 cursor-pointer mx-auto"
           onClick={() => setMoreTechStacks(!moreTechStacks)}
         >
-          {moreTechStacks ? "Show Less" : "Show More"}{" "}
+          {moreTechStacks ? "Show Less" : "Show More"}
           {moreTechStacks ? (
-            <ChevronUp className="inline-block w-4" />
+            <ChevronUp className="w-4" />
           ) : (
-            <ChevronDown className="inline-block w-4" />
+            <ChevronDown className="w-4" />
           )}
         </button>
       </div>
-    </div>
+    </Container>
   );
 }

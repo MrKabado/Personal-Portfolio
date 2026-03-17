@@ -1,8 +1,9 @@
 import ProjectHolder from "@/components/common/ProjectHolder";
+import Container from "@/components/common/Container";
 
 export default function ProjectsPage() {
   return (
-    <div className="default-div">
+    <Container>
       <div className="text-center flex flex-col gap-4">
         <h1 className="font-bold text-[37px]">My Projects</h1>
         <p className="text-gray-700 text-[17px]">
@@ -14,7 +15,8 @@ export default function ProjectsPage() {
     <ProjectHolder 
       limit={false}
       isAdmin={false}
+      isHome={false}
     />
-    </div>
+    </Container>
   );
 }

@@ -35,7 +35,7 @@ export default function ProjectCard({
         loading="eager"
       />
 
-      <div className="p-2">
+      <div className="p-2 ">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <h1 className="text-xl font-semibold">{ProjectTitle}</h1>
@@ -44,7 +44,7 @@ export default function ProjectCard({
               <Trash2 className="w-5 text-red-800 hover:text-red-300" />
             </div>
           </div>
-          <p className="text-[12px] font-normal text-gray-600 leading-4 text-justify">
+          <p className="text-[13px] text-gray-500 leading-4 text-justify">
             {ProjectDescription}
           </p>
         </div>

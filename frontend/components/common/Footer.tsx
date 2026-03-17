@@ -23,21 +23,24 @@ export default function Footer() {
   ];
 
   return (
-    <div>
-      <div className="py-12 mx-34 grid grid-cols-4 gap-24 items-baseline"> 
+    <div className="px-6 md:px-16 lg:px-34">
+      <div className="py-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 items-start mx-auto">
+        
         <div className="flex flex-col gap-1">
-          <h2 className="font-semibold text-[19px] text-gray-900 mb-2">Jerson Bonghanoy</h2>
+          <h2 className="font-semibold text-[18px] md:text-[19px] text-gray-900 mb-2">
+            Jerson Bonghanoy
+          </h2>
           <p className="text-gray-700 text-sm">Aspiring Web Developer</p>
           <p className="text-gray-700 text-sm flex items-center gap-1">
-            <span>
-              <MapPin className="w-4 inline-block text-green-800" />
-            </span>
+            <MapPin className="w-4 text-green-800" />
             Cebu, Philippines
           </p>
         </div>
 
         <div>
-          <h1 className="font-semibold text-[19px] text-gray-900 mb-2">Pages</h1>
+          <h1 className="font-semibold text-[18px] md:text-[19px] text-gray-900 mb-2">
+            Pages
+          </h1>
           <ul className="flex flex-col gap-1">
             {Pages.map((page, i) => (
               <Link href={`/${page.href}`} key={i} className="hover:underline">
@@ -48,7 +51,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h1 className="font-semibold text-[19px] text-gray-900 mb-2">Tech Stack</h1>
+          <h1 className="font-semibold text-[18px] md:text-[19px] text-gray-900 mb-2">
+            Tech Stack
+          </h1>
           <ul className="flex flex-col gap-1">
             {TechStack.map((stack, i) => (
               <li key={i} className="text-sm text-gray-700">
@@ -59,13 +64,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <h1 className="font-semibold text-[19px] text-gray-900 mb-2">Connect</h1>
+          <h1 className="font-semibold text-[18px] md:text-[19px] text-gray-900 mb-2">
+            Connect
+          </h1>
           <ul className="flex flex-col gap-1">
             {ConnectContent.map((connect, i) => (
               <li
                 key={i}
                 className="text-sm text-gray-700 cursor-pointer hover:underline"
-                onClick={() => window.open(`${connect.link}`)}
+                onClick={() => window.open(connect.link, "_blank")}
               >
                 {connect.name}
               </li>
@@ -74,8 +81,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mb-10">
-        <h1 className="text-center text-[16px] text-gray-600">© 2026 Jerson Jay Bonghanoy. All rights reserved.</h1>
+      <div className="pb-8">
+        <h1 className="text-center text-sm md:text-[16px] text-gray-600">
+          © 2026 Jerson Jay Bonghanoy. All rights reserved.
+        </h1>
       </div>
     </div>
   );
