@@ -39,6 +39,12 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
 
     fetchProjects();
   }, []);
+
+  let loading = "It looks like you haven’t added any projects yet. Start by creating your first project!"
+  if (!isAdmin) {
+    loading = "It looks like Jerson Jay Bonghanoy hasn’t added any projects yet. Please check back later to see his amazing work!"
+  }
+
   return (
     <div className="mt-10">
       {isHome && (
@@ -64,8 +70,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
       {projects.length == 0 ? (
         <div className="mt-10 text-center">
           <h1 className="text-base md:text-lg italic text-gray-400">
-            It looks like you haven’t added any projects yet. Start by creating
-            your first project!
+            {loading}
           </h1>
         </div>
       ) : (

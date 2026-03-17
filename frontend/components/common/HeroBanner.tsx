@@ -1,8 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Facebook, Github, Calendar } from "lucide-react";
+import { Linkedin, Facebook, Github, Phone } from "lucide-react";
 import Profile from "../../assets/profile.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroBanner() {
   const icons = [
@@ -16,7 +17,6 @@ export default function HeroBanner() {
 
   return (
     <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
-      
       <div className="w-full md:w-1/2 flex flex-col gap-5 text-center md:text-left">
         <div className="flex flex-col gap-2">
           <h1 className="font-semibold text-base md:text-lg text-green-700">
@@ -28,17 +28,21 @@ export default function HeroBanner() {
           </h1>
 
           <p className="text-gray-800 dark:text-white text-sm sm:text-base leading-6 mt-2">
-            A passionate Software Developer dedicated on building websites, web
-            applications, mobile apps, and custom software that are not only
-            highly functional but also visually captivating.
+            Aspiring web developer passionate about building websites, web
+            applications, mobile apps, and custom software that are functional,
+            user-friendly, and visually engaging. Focused on learning new
+            technologies and creating practical solutions that solve real
+            problems.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-          <Button className="text-gray-200 py-5 md:py-6 px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto">
-            <Calendar size={20} />
-            Free Consultation
-          </Button>
+          <Link href="/contact" passHref
+            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto"
+          >
+            <Phone size={20} />
+            Contact Me
+          </Link>
 
           <Button
             variant="outline"
