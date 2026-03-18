@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { ModeToggle } from "./ThemeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 type HeaderProps = {
   isVisited: string;
@@ -89,9 +91,27 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
     </nav>
 
     {/* Mobile Menu Button */}
-    <div className="md:hidden text-2xl flex gap-6">
+    <div className="md:hidden text-2xl flex gap-4">
       <ModeToggle />
-      <button onClick={() => setOpen(!open)}>☰</button>
+      
+      <DropdownMenu>
+        <DropdownMenuTrigger className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition">
+          <Menu size={20}/>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent align="end" className="lg:hidden w-48">
+              {navItems.map((item, i) => (
+                <div key={i}>
+                  <Link href={`/${item.link}`}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      {item.name}
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                </div>
+              ))}
+            </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   </div>
 
