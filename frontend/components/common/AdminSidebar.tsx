@@ -10,7 +10,7 @@ export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
   ];
 
   return (
-    <div className="h-screen sticky top-0 w-80 bg-white shadow-lg flex flex-col justify-between px-8 pt-22 pb-8">
+    <div className="hidden lg:flex h-screen sticky top-0 w-80 bg-white shadow-lg flex-col justify-between px-8 pt-22 pb-8">
       <div>
         {/* Admin Heading */}
         <div className="mb-8 flex flex-col items-center">

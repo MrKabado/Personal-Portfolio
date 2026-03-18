@@ -36,7 +36,7 @@ export default function InsertProjectModal({
   defaultTitle = "",
   defaultDescription = "",
   defaultCoverImage = "",
-  defaultLink="",
+  defaultLink = "",
   submitted = false,
 }: Props) {
   const [projectTitle, setProjectTitle] = useState<string>(defaultTitle);
@@ -68,7 +68,7 @@ export default function InsertProjectModal({
     <>
       <DialogHeader>
         <DialogTitle className="font-semibold text-xl">
-          Add new project
+          Add New Project
         </DialogTitle>
         <DialogDescription>
           Fill in the required details below to create a new project. Click save
@@ -76,7 +76,8 @@ export default function InsertProjectModal({
         </DialogDescription>
       </DialogHeader>
 
-      <FieldGroup className="overflow-y-auto">
+      {/* Form Fields */}
+      <FieldGroup className="overflow-y-auto max-h-[70vh] pr-1">
         <Field>
           <Label htmlFor="title">
             Title<span className="text-red-600">*</span>
@@ -87,6 +88,7 @@ export default function InsertProjectModal({
             placeholder="Project title"
             value={projectTitle}
             onChange={(e) => setProjectTitle(e.target.value)}
+            className="text-sm sm:text-base"
           />
         </Field>
 
@@ -100,6 +102,7 @@ export default function InsertProjectModal({
             placeholder="Project description..."
             value={projectDescription}
             onChange={(e) => setProjectDescription(e.target.value)}
+            className="text-sm sm:text-base"
           />
         </Field>
 
@@ -122,7 +125,7 @@ export default function InsertProjectModal({
           <Label className="mb-2">
             Tech Stack<span className="text-red-600">*</span>
           </Label>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
             {[
               "Next.js",
               "Express",
@@ -134,7 +137,7 @@ export default function InsertProjectModal({
             ].map((tech) => (
               <div
                 key={tech}
-                className="flex items-center gap-2 p-2 rounded-md w-fit"
+                className="flex items-center gap-2 p-2 rounded-md w-full"
               >
                 <Checkbox
                   id={tech.toLowerCase().replace(/\./g, "")}
@@ -160,24 +163,28 @@ export default function InsertProjectModal({
             placeholder="Website link"
             value={projectLink}
             onChange={(e) => setProjectLink(e.target.value)}
+            className="text-sm sm:text-base"
           />
         </Field>
       </FieldGroup>
 
-      <DialogFooter className="flex justify-end gap-2">
+      {/* Footer Buttons */}
+      <DialogFooter className="flex flex-col sm:flex-row justify-end gap-2">
         <DialogClose asChild>
-          <Button variant="outline">Cancel</Button>
+          <Button variant="outline" className="w-full sm:w-auto">
+            Cancel
+          </Button>
         </DialogClose>
-          <ButtonSubmit
-            props={{
-              btnOnClick: handleSubmit,
-              submitted: submitted,
-              buttonType: "button",
-              btnText: "Save Changes",
-              btnLoadingText: "Saving Changes",
-              className: "w-full",
-            }}
-          />
+        <ButtonSubmit
+          props={{
+            btnOnClick: handleSubmit,
+            submitted: submitted,
+            buttonType: "button",
+            btnText: "Save Changes",
+            btnLoadingText: "Saving Changes",
+            className: "w-full sm:w-auto",
+          }}
+        />
       </DialogFooter>
     </>
   );

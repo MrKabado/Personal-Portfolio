@@ -1,13 +1,14 @@
 "use client"
 import { useState, useEffect } from "react";
 import RecentTaskHolder from "@/components/common/RecentTaskHolder";
+import AdminContainer from "@/components/common/AdminContainer";
 
 export default function recentTask() {
   return (
-    <div className="admin-default-div">
+    <AdminContainer>
       <RecentTaskHolder 
         limit = {false}
       />
-    </div>
+    </AdminContainer>
   )
 }

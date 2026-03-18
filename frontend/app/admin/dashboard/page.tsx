@@ -2,12 +2,9 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { verifyAdmin } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import api from "@/lib/api";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import RecentTaskHolder from "@/components/common/RecentTaskHolder";
+import AdminContainer from "@/components/common/AdminContainer";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -37,7 +34,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const countProjects = async () => {
       try {
-        const response1 = await api.get('api/admin/messages');
+        const response1 = await api.get("api/admin/messages");
         setMessages(response1.data.data);
 
         const response2 = await api.get("/api/projects");
@@ -57,25 +54,30 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="admin-default-div">
-      <h1 className="font-semibold text-2xl text-gray-800">Dashboard</h1>
+    <AdminContainer>
 
-      <div className="w-fit h-20 my-5 grid grid-cols-3 gap-10">
+      <h1 className="font-semibold text-xl md:text-2xl text-gray-800">
+        Dashboard
+      </h1>
+
+      <div className="w-full my-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 rounded-lg">
         {KeyStats.map((stats, i) => (
           <div
             key={i}
-            className="w-40 py-2 px-4 text-gray-300 flex flex-col items-center justify-between 
-          bg-[#333333] rounded-lg hover:opacity-85 transition-all duration-200 cursor-default"
+            className="w-full py-4 px-4 text-gray-300 flex flex-col items-center justify-center 
+      bg-[#333333] rounded-lg hover:opacity-85 transition-all duration-200 cursor-default"
           >
-            <h1 className="text-2xl font-semibold">{stats.value || 0}</h1>
-            <h1 className="font-medium">{stats.name}</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold">
+              {stats.value || 0}
+            </h1>
+            <h1 className="text-sm sm:text-base font-medium text-center">
+              {stats.name}
+            </h1>
           </div>
         ))}
       </div>
 
-      <RecentTaskHolder 
-        limit={true}
-      />
-    </div>
+      <RecentTaskHolder limit={true} />
+    </AdminContainer>
   );
 }

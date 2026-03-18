@@ -30,7 +30,6 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
     const fetchProjects = async () => {
       try {
         const response = await api.get("/api/projects");
-        console.log("GET PROJECTS:", response.data.data);
         setProjects(response.data.data);
       } catch (error) {
         console.error("Failed to fetch projects:", error);

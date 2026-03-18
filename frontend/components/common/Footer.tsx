@@ -28,7 +28,7 @@ export default function Footer() {
         
         <div className="flex flex-col gap-1">
           <h2 className="font-semibold text-[18px] md:text-[19px] text-gray-900 mb-2">
-            Jerson Bonghanoy
+            Jerson Jay Bonghanoy
           </h2>
           <p className="text-gray-700 text-sm">Aspiring Web Developer</p>
           <p className="text-gray-700 text-sm flex items-center gap-1">

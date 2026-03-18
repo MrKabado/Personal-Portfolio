@@ -8,6 +8,7 @@ import api from "@/lib/api";
 import { toast } from "sonner";
 import ProjectHolder from "@/components/common/ProjectHolder";
 import { useRouter } from "next/navigation";
+import AdminContainer from "@/components/common/AdminContainer";
 
 type ProjectData = {
   id: number;
@@ -50,7 +51,7 @@ export default function ProjectsPage() {
     }, []);
 
   return (
-    <div className="admin-default-div flex flex-col">
+    <AdminContainer className="flex flex-col">
       {/* Add Project Dialog */}
       <Dialog>
         <DialogTrigger className="bg-black text-gray-200 py-1 px-3 rounded-md flex justify-center items-center w-fit cursor-pointer gap-2 hover:opacity-80 transition-all duration-150">
@@ -108,7 +109,8 @@ export default function ProjectsPage() {
       <ProjectHolder 
         limit={false}
         isAdmin={true}
+        isHome={false}
       />
-    </div>
+    </AdminContainer>
   );
 }
