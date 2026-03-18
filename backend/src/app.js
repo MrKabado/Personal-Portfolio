@@ -7,13 +7,15 @@ import authRoutes from './routes/AuthRoutes.js';
 
 const app = express();
 
+const allowedOrigin = process.env.NODE_ENV === "production"
+? ""
+: "http://localhost:3000"
+
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser())
 app.use(cors({
-  origin: [
-    "http://localhost:3000",       
-  ],
+  origin: allowedOrigin,
   credentials: true,
 }));
 
