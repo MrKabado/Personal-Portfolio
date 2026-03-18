@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import adminRoutes from './routes/AdminRoutes.js';
 import authRoutes from './routes/AuthRoutes.js';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
