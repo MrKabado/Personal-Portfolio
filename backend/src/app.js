@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 const allowedOrigin = process.env.NODE_ENV === "production"
-? ""
+? process.env.NEXT_PUBLIC_FRONTEND_URL
 : "http://localhost:3000"
 
 app.use(express.json());
