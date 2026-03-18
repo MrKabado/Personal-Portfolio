@@ -66,18 +66,19 @@ export default function MessagesPage() {
           messages.map((message, i) => (
             <div
               key={i}
-              className="border-b border-gray-200 pb-3 last:border-b-0 
-        hover:bg-gray-50 transition-all duration-150 cursor-default rounded-md px-2 sm:px-0"
+              className="border-b border-gray-200 pb-3 last:border-b-0 px-2
+        hover:bg-gray-50 transition-all duration-150 cursor-default rounded-md
+        dark:bg-[#333333] dark:border-gray-600"
             >
-              <h2 className="font-medium text-base sm:text-lg text-black">
+              <h2 className="font-medium text-base sm:text-lg text-black  dark:text-gray-200">
                 {message.fname} {message.lname}
               </h2>
 
-              <p className="text-gray-600 text-xs sm:text-sm break-all">
+              <p className="text-gray-600 text-xs sm:text-sm break-all  dark:text-gray-400">
                 {message.email}
               </p>
 
-              <p className="text-black text-sm sm:text-base mt-1 leading-relaxed">
+              <p className="text-black text-sm sm:text-base mt-1 leading-relaxed  dark:text-gray-300">
                 {message.message}
               </p>
             </div>

@@ -54,7 +54,7 @@ export default function ProjectsPage() {
     <AdminContainer className="flex flex-col">
       {/* Add Project Dialog */}
       <Dialog>
-        <DialogTrigger className="bg-black text-gray-200 py-1 px-3 rounded-md flex justify-center items-center w-fit cursor-pointer gap-2 hover:opacity-80 transition-all duration-150">
+        <DialogTrigger className=" bg-black text-gray-200 py-1 px-3 rounded-md flex justify-center items-center w-fit cursor-pointer gap-2 hover:opacity-80 transition-all duration-150">
           Add new project
           <Plus className="w-4 h-4" />
         </DialogTrigger>

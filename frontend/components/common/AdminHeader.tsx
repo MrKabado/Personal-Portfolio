@@ -48,25 +48,26 @@ export default function AdminHeader() {
     <header
       className={`
     fixed top-0 left-0 w-full z-50
-    px-4 sm:px-6 md:px-12 py-3
+    px-6 md:px-16 lg:px-34 py-3
     shadow-md bg-white/50 backdrop-blur-lg
     transition-transform duration-300 ease-in-out
     ${hidden ? "-translate-y-full" : "translate-y-0"}
+    dark:bg-[#333333]/90 dark:shadow-lg
   `}
     >
       <div className="flex items-center justify-between">
         {/* Logo / Name */}
         <div className="flex flex-col leading-tight">
-          <h1 className="font-semibold text-sm sm:text-base md:text-lg text-gray-700">
+          <h1 className="font-semibold text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-100">
             Jerson Jay Bonghanoy
           </h1>
-          <h1 className="text-gray-500 text-xs sm:text-sm">Aspiring Dev</h1>
+          <h1 className="text-gray-500 text-xs sm:text-sm dark:text-gray-400">Aspiring Dev</h1>
         </div>
 
         {/* Right Side */}
         <nav className="flex items-center gap-2 sm:gap-4">
           {/* Hide on small screens */}
-          <h1 className="hidden sm:block font-medium text-sm md:text-md text-gray-700">
+          <h1 className="hidden sm:block font-medium text-sm md:text-md text-gray-700 dark:text-gray-200">
             Admin Page
           </h1>
 

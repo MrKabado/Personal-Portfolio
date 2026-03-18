@@ -10,19 +10,21 @@ export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
   ];
 
   return (
-    <div className="hidden lg:flex h-screen sticky top-0 w-80 bg-white shadow-lg flex-col justify-between px-8 pt-22 pb-8">
+    <div className="hidden lg:flex h-screen sticky top-0 w-80 bg-white shadow-lg flex-col justify-between 
+    px-8 pt-22 pb-8 dark:bg-[#333333]">
       <div>
         {/* Admin Heading */}
         <div className="mb-8 flex flex-col items-center">
-          <h1 className="text-2xl font-bold text-gray-800">Admin Panel</h1>
-          <p className="text-sm text-gray-500">Welcome, Admin</p>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Admin Panel</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Welcome, Admin</p>
         </div>
 
         {/* Sidebar Buttons */}
         <div className="flex flex-col gap-3">
           {SidebarNav.map(({ name, icon: Icon, link }, i) => (
             <Link href={`/admin/${link}`} key={i}>
-              <button className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 font-medium text-gray-700 cursor-pointer">
+              <button className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 font-medium text-gray-700 cursor-pointer w-full
+              dark:text-gray-300 dark:hover:bg-[#444444]">
                 <Icon className="w-8" />
                 {name}
               </button>
@@ -32,7 +34,8 @@ export default function AdminSidebar(props: { logoutBtnSideBar: () => void }) {
       </div>
 
       <button
-        className="flex items-center gap-2 p-2 rounded-md hover:bg-red-100 font-medium cursor-pointer text-red-600"
+        className="flex items-center gap-2 p-2 rounded-md hover:bg-red-100 font-medium cursor-pointer text-red-600
+        dark:text-red-600 dark:hover:bg-red-900"
         onClick={props.logoutBtnSideBar}
       >
         <LogOut className="w-8" />

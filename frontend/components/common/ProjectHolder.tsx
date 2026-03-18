@@ -39,8 +39,8 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
     fetchProjects();
   }, []);
 
-  let loading = "It looks like you haven’t added any projects yet. Start by creating your first project!"
-  if (!isAdmin) {
+  let loading = "Loading... Please wait for a moment"
+  if (isAdmin === false) {
     loading = "It looks like Jerson Jay Bonghanoy hasn’t added any projects yet. Please check back later to see his amazing work!"
   }
 

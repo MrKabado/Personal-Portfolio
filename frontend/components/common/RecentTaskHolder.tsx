@@ -11,6 +11,11 @@ type Props = {
 export default function RecentTaskHolder({ limit }: Props) {
   const [recentTasks, setRecentTasks] = useState<any[]>([]);
 
+  let loading = "Loading...Please wait for a moment";
+  if (recentTasks.length == undefined) {
+    loading = "No recent tasks found. Start by creating your first project!";
+  }
+
   useEffect(() => {
     const getAllRecentTasks = async () => {
       try {
@@ -28,13 +33,13 @@ export default function RecentTaskHolder({ limit }: Props) {
     <div className="mt-10">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
-        <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
-          Recent Task Done
+        <h1 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-200">
+          Recent Task
         </h1>
 
         <Link
           href={"/admin/recentTask"}
-          className={`text-sm sm:text-base text-gray-600 font-medium hover:text-gray-800 ${
+          className={`text-sm sm:text-base text-gray-600 font-medium hover:text-gray-800 dark:text-gray-300 ${
             limit ? "block" : "hidden"
           }`}
         >
@@ -44,31 +49,37 @@ export default function RecentTaskHolder({ limit }: Props) {
 
       {/* Tasks */}
       <div className="flex flex-col gap-3">
-        {(!limit ? recentTasks : recentTasks.slice(0, 3)).map((task) => (
-          <div
-            key={task.id}
-            className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 p-4 
+        {recentTasks.length === 0 ? (
+          <p className="text-gray-500 italic text-center mt-10 text-sm sm:text-base">
+            {loading}
+          </p>
+        ) : (
+          (!limit ? recentTasks : recentTasks.slice(0, 3)).map((task) => (
+            <div
+              key={task.id}
+              className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 p-4 
         bg-white border border-gray-200 rounded-lg shadow-sm 
         hover:shadow-md transition-all duration-200 cursor-pointer 
-        border-l-4 border-l-gray-900"
-          >
-            {/* Left Side */}
-            <div className="flex flex-col">
-              <h2 className="font-semibold text-gray-900 text-sm sm:text-base">
-                {task.action_type}
-              </h2>
+        border-l-4 border-l-gray-900 dark:bg-[#333333] dark:border-gray-600"
+            >
+              {/* Left Side */}
+              <div className="flex flex-col">
+                <h2 className="font-semibold text-gray-900 text-sm sm:text-base dark:text-gray-300">
+                  {task.action_type}
+                </h2>
 
-              <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                {task.description}
+                <p className="text-xs sm:text-sm text-gray-500 mt-1 dark:text-gray-400">
+                  {task.description}
+                </p>
+              </div>
+
+              {/* Date */}
+              <p className="text-xs text-gray-400 sm:whitespace-nowrap">
+                {new Date(task.created_at).toLocaleDateString()}
               </p>
             </div>
-
-            {/* Date */}
-            <p className="text-xs text-gray-400 sm:whitespace-nowrap">
-              {new Date(task.created_at).toLocaleDateString()}
-            </p>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
