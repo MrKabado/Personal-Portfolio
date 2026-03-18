@@ -23,11 +23,12 @@ export default function HeroBanner() {
             Message me
           </h1>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            Hey, I am Jerson Jay
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight
+          dark:text-gray-200">
+            Hello there! I am Jerson Jay
           </h1>
 
-          <p className="text-gray-800 dark:text-white text-sm sm:text-base leading-6 mt-2">
+          <p className="text-gray-800 text-sm sm:text-base leading-6 mt-2 dark:text-gray-300">
             Aspiring web developer passionate about building websites, web
             applications, mobile apps, and custom software that are functional,
             user-friendly, and visually engaging. Focused on learning new
@@ -38,7 +39,7 @@ export default function HeroBanner() {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
           <Link href="/contact" passHref
-            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto dark:text-gray-100"
           >
             <Phone size={20} />
             Contact Me
@@ -46,7 +47,7 @@ export default function HeroBanner() {
 
           <Button
             variant="outline"
-            className="py-5 md:py-6 px-5 w-full sm:w-auto"
+            className="py-5 md:py-6 px-5 w-full sm:w-auto dark:text-gray-100"
           >
             Explore Projects
           </Button>
@@ -57,7 +58,7 @@ export default function HeroBanner() {
             <Icon
               key={link}
               size={22}
-              className="text-gray-400 transition-all duration-300 cursor-pointer hover:text-black hover:-translate-y-1"
+              className="text-gray-400 transition-all duration-300 cursor-pointer hover:text-black hover:-translate-y-1 dark:text-gray-200"
               onClick={() => window.open(link, "_blank")}
             />
           ))}

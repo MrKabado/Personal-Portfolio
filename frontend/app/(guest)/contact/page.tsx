@@ -85,8 +85,8 @@ export default function ContactPage() {
   return (
     <Container>
   <div className="flex flex-col items-center gap-2">
-    <h1 className="font-bold text-[30px] text-center">Let's get in touch!</h1>
-    <p className="text-[17px] text-gray-600 text-center">
+    <h1 className="font-bold text-[30px] text-center dark:text-gray-200">Let's get in touch!</h1>
+    <p className="text-[17px] text-gray-600 text-center dark:text-gray-400">
       You can reach me at the following
     </p>
   </div>
@@ -141,8 +141,8 @@ export default function ContactPage() {
 
     <div className="flex flex-col justify-between w-full shadow-[0_0_3px_0_rgba(0,0,0,0.2)] rounded-lg p-6">
       <div className="flex flex-col justify-baseline gap-1 mb-4">
-        <h1 className="font-semibold text-lg">Let's get in touch</h1>
-        <p className="text-sm text-gray-600">
+        <h1 className="font-semibold text-lg dark:text-gray-200">Let's get in touch</h1>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           Whether you have a project in mind or just want to connect, I'd
           love to hear from you. Feel free to reach out for any inquiries or
           collaborations.
@@ -152,26 +152,26 @@ export default function ContactPage() {
       <form onSubmit={HandleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col sm:flex-row justify-between gap-4 w-full">
           <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="fname" className="text-sm font-medium text-gray-800">
+            <label htmlFor="fname" className="text-sm font-medium text-gray-800 dark:text-gray-300">
               First Name
             </label>
             <input
               type="text"
               id="fname"
-              className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+              className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md dark:border dark:border-gray-500"
               value={fname}
               onChange={(e) => setFname(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="lname" className="text-sm font-medium text-gray-800">
+            <label htmlFor="lname" className="text-sm font-medium text-gray-800 dark:text-gray-300">
               Last Name
             </label>
             <input
               type="text"
               id="lname"
-              className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+              className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md dark:border dark:border-gray-500"
               value={lname}
               onChange={(e) => setLname(e.target.value)}
             />
@@ -179,13 +179,13 @@ export default function ContactPage() {
         </div>
 
         <div className="flex flex-col gap-1 w-full">
-          <label htmlFor="email" className="text-sm font-medium text-gray-800">
+          <label htmlFor="email" className="text-sm font-medium text-gray-800 dark:text-gray-300">
             Email
           </label>
           <input
             type="text"
             id="email"
-            className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+            className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md dark:border dark:border-gray-500"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -194,7 +194,7 @@ export default function ContactPage() {
         <div className="flex flex-col gap-1 w-full">
           <label
             htmlFor="message"
-            className="flex gap-2 items-end text-sm font-medium text-gray-800"
+            className="flex gap-2 items-end text-sm font-medium text-gray-800 dark:text-gray-300"
           >
             How can I help you?{" "}
             <span className="inline-block text-xs text-gray-400">
@@ -206,7 +206,7 @@ export default function ContactPage() {
             rows={3}
             name="message"
             id="message"
-            className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md"
+            className="shadow-[0_0_2px_rgba(0,0,0,0.3)] p-2 rounded-md dark:border dark:border-gray-500"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -216,8 +216,7 @@ export default function ContactPage() {
           props={{
             submitted: submitted,
             buttonType: "submit",
-            className:
-              "w-full border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium",
+            className: "w-full border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium dark:bg-[#333333] dark:border-gray-600 dark:text-gray-300 dark:hover:bg-[#444444]",
             btnOnClick: HandleSubmit,
             btnText: "Submit",
             btnLoadingText: "Submitting",

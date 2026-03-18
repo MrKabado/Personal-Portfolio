@@ -43,84 +43,85 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
 
   return (
     <header
-      className={`
-        fixed top-0 left-0 w-full z-50
-        px-6 md:px-16 lg:px-34 py-3
-        shadow-md bg-white/50 backdrop-blur-lg
-        transition-transform duration-300 ease-in-out
-        ${hidden ? "-translate-y-full" : "translate-y-0"}
-      `}
-    >
-      <div className="flex items-center justify-between">
-        {/* Logo / Name */}
-        <div className="flex flex-col">
-          <h1 className="font-semibold text-lg text-gray-700">
-            Jerson Jay Bonghanoy
-          </h1>
-          <h1 className="text-gray-500 text-sm">Aspiring Dev</h1>
-        </div>
+  className={`
+    fixed top-0 left-0 w-full z-50
+    px-6 md:px-16 lg:px-34 py-3
+    shadow-md bg-white/50 backdrop-blur-lg
+    transition-transform duration-300 ease-in-out
+    ${hidden ? "-translate-y-full" : "translate-y-0"}
+    dark:bg-[#333333]/90 dark:shadow-lg
+  `}
+>
+  <div className="flex items-center justify-between">
+    {/* Logo / Name */}
+    <div className="flex flex-col">
+      <h1 className="font-semibold text-lg text-gray-700 dark:text-gray-100">
+        Jerson Jay Bonghanoy
+      </h1>
+      <h1 className="text-gray-500 text-sm dark:text-gray-400">Aspiring Dev</h1>
+    </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex">
-          <ul className="flex gap-4 items-center">
-            {navItems.map((item) => (
-              <li
-                key={item.name}
-                className={`
-                  ${
-                    pathname === `/${item.link}` ||
-                    (item.link === "" && pathname === "/")
-                      ? "bg-gray-100 text-black"
-                      : "bg-transparent text-gray-500"
-                  }
-                  text-sm cursor-pointer rounded-sm
-                  px-3 py-1 text-center
-                  transition-all duration-200
-                  hover:text-black
-                `}
-              >
-                <Link href={`/${item.link}`}>{item.name}</Link>
-              </li>
-            ))}
-          </ul>
+    {/* Desktop Nav */}
+    <nav className="hidden md:flex">
+      <ul className="flex gap-4 items-center">
+        {navItems.map((item) => (
+          <li
+            key={item.name}
+            className={`
+              ${
+                pathname === `/${item.link}` ||
+                (item.link === "" && pathname === "/")
+                  ? "bg-gray-100 text-black dark:bg-gray-700 dark:text-white"
+                  : "bg-transparent text-gray-500 dark:text-gray-300"
+              }
+              text-sm cursor-pointer rounded-sm
+              px-3 py-1 text-center
+              transition-all duration-200
+              hover:text-black dark:hover:text-white
+            `}
+          >
+            <Link href={`/${item.link}`}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
 
-          <ModeToggle />
-        </nav>
+      <ModeToggle />
+    </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden text-2xl flex gap-4">
-          <ModeToggle />
-          <button onClick={() => setOpen(!open)}>☰</button>
-        </div>
-      </div>
+    {/* Mobile Menu Button */}
+    <div className="md:hidden text-2xl flex gap-4">
+      <ModeToggle />
+      <button onClick={() => setOpen(!open)}>☰</button>
+    </div>
+  </div>
 
-      {/* Mobile Nav */}
-      {open && (
-        <nav className="md:hidden mt-4">
-          <ul className="flex flex-col gap-3">
-            {navItems.map((item) => (
-              <li
-                key={item.name}
-                onClick={() => setOpen(false)}
-                
-                className={`
-                  ${
-                    pathname === `/${item.link}` ||
-                    (item.link === "../../../app" && pathname === "/")
-                      ? "bg-black text-white"
-                      : "bg-gray-100"
-                  }
-                  text-sm cursor-pointer rounded-sm
-                  px-4 py-2 text-center
-                  transition-all duration-200
-                `}
-              >
-                <Link href={`/${item.link}`}>{item.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-    </header>
+  {/* Mobile Nav */}
+  {open && (
+    <nav className="md:hidden mt-4">
+      <ul className="flex flex-col gap-3">
+        {navItems.map((item) => (
+          <li
+            key={item.name}
+            onClick={() => setOpen(false)}
+            className={`
+              ${
+                pathname === `/${item.link}` ||
+                (item.link === "../../../app" && pathname === "/")
+                  ? "bg-black text-white dark:bg-gray-700 dark:text-white"
+                  : "bg-gray-100 dark:bg-[#222222] dark:text-gray-300"
+              }
+              text-sm cursor-pointer rounded-sm
+              px-4 py-2 text-center
+              transition-all duration-200
+              hover:bg-gray-200 dark:hover:bg-gray-600
+            `}
+          >
+            <Link href={`/${item.link}`}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+</header>
   );
 }

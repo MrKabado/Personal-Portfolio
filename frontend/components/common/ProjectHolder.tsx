@@ -49,15 +49,15 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
       {isHome && (
         <div className="mt-16 md:mt-32 lg:mt-40">
           <div className="flex flex-col items-center gap-3 text-center">
-            <h1 className="text-sm md:text-md bg-gray-200 rounded-md px-2 py-1 w-fit">
+            <h1 className="text-sm md:text-md bg-gray-200 rounded-md px-2 py-1 w-fit dark:bg-[#333333] dark:text-gray-300">
               Recent Projects
             </h1>
 
-            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl leading-tight">
+            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl leading-tight dark:text-gray-100">
               Check out my recent work
             </h1>
 
-            <p className="text-sm sm:text-base text-gray-700 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-700 max-w-xl dark:text-gray-300">
               I’ve worked on a variety of projects, from simple websites to
               <br className="hidden sm:block" /> complex web applications. Here
               are a few of my favorites.
@@ -75,7 +75,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
       ) : (
         <>
           <h1
-            className={`font-medium text-base md:text-lg mt-10 ${
+            className={`font-medium text-base md:text-lg mt-10 dark:text-gray-100 ${
               limit ? "hidden" : "block"
             }`}
           >
@@ -110,8 +110,8 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
               !limit ? "hidden" : "flex"
             }`}
           >
-            <h1 className="text-sm md:text-md font-semibold">More Projects</h1>
-            <ArrowRight className="w-5" />
+            <h1 className="text-sm md:text-md font-semibold dark:text-gray-200">More Projects</h1>
+            <ArrowRight className="w-5 dark:text-gray-200" />
           </Link>
         </>
       )}
