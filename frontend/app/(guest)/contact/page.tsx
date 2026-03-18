@@ -128,10 +128,10 @@ export default function ContactPage() {
             <div
               key={i}
               className="group border border-gray-600 bg-transparent py-4 flex items-center justify-center rounded-lg hover:bg-[#333333] transition-all duration-100 cursor-pointer"
+              onClick={() => window.open(link)}
             >
               <Icon
                 className="w-7 h-7 text-gray-300 opacity-90 transition-all duration-200 group-hover:bg-[#464646] p-1 rounded-md"
-                onClick={() => window.open(link, "_blank")}
               />
             </div>
           ))}

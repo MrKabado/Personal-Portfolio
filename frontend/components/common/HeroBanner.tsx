@@ -11,7 +11,7 @@ export default function HeroBanner() {
       icon: Linkedin,
       link: "https://www.linkedin.com/in/bonghanoy-jerson-jay-49b205378/",
     },
-    { icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy.5/" },
+    { icon: Facebook, link: "https://www.facebook.com/jersonjay.bonghanoy" },
     { icon: Github, link: "https://github.com/MrKabado" },
   ];
 
@@ -45,12 +45,12 @@ export default function HeroBanner() {
             Contact Me
           </Link>
 
-          <Button
-            variant="outline"
-            className="py-5 md:py-6 px-5 w-full sm:w-auto dark:text-gray-100"
+          <Link
+            href={"/projects"} passHref
+            className="py-2 px-4 w-full sm:w-auto dark:text-gray-100 border rounded-lg"
           >
             Explore Projects
-          </Button>
+          </Link>
         </div>
 
         <div className="flex justify-center md:justify-start gap-4 mt-2">
