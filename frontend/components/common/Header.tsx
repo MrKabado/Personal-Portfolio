@@ -73,7 +73,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
               ${
                 pathname === `/${item.link}` ||
                 (item.link === "" && pathname === "/")
-                  ? "bg-gray-100 text-black dark:bg-gray-700 dark:text-white"
+                  ? "bg-gray-100 text-black dark:bg-[#444444] dark:text-white"
                   : "bg-transparent text-gray-500 dark:text-gray-300"
               }
               text-sm cursor-pointer rounded-sm

@@ -20,7 +20,7 @@ export default function HeroBanner() {
       <div className="w-full md:w-1/2 flex flex-col gap-5 text-center md:text-left">
         <div className="flex flex-col gap-2">
           <h1 className="font-semibold text-base md:text-lg text-green-700">
-            Message me
+            Reach Out
           </h1>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight
@@ -39,7 +39,8 @@ export default function HeroBanner() {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
           <Link href="/contact" passHref
-            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto dark:text-gray-100"
+            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto 
+             dark:bg-[#333333] dark:border-2 dark:border-[#FF9000] dark:text-[#FF9000] dark:hover:bg-[#444444]"
           >
             <Phone size={20} />
             Contact Me

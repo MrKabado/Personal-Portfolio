@@ -141,11 +141,9 @@ export default function ContactPage() {
 
     <div className="flex flex-col justify-between w-full shadow-[0_0_3px_0_rgba(0,0,0,0.2)] rounded-lg p-6">
       <div className="flex flex-col justify-baseline gap-1 mb-4">
-        <h1 className="font-semibold text-lg dark:text-gray-200">Let's get in touch</h1>
+        <h1 className="font-semibold text-lg dark:text-gray-200">Reach Out!</h1>
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Whether you have a project in mind or just want to connect, I'd
-          love to hear from you. Feel free to reach out for any inquiries or
-          collaborations.
+          Whether you’re looking to collaborate or just want to chat, I’d love to hear from you. Let’s connect and share ideas.
         </p>
       </div>
 
