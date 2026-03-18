@@ -62,7 +62,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
     </div>
 
     {/* Desktop Nav */}
-    <nav className="hidden md:flex">
+    <nav className="hidden md:flex gap-4">
       <ul className="flex gap-4 items-center">
         {navItems.map((item) => (
           <li
@@ -89,7 +89,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
     </nav>
 
     {/* Mobile Menu Button */}
-    <div className="md:hidden text-2xl flex gap-4">
+    <div className="md:hidden text-2xl flex gap-6">
       <ModeToggle />
       <button onClick={() => setOpen(!open)}>☰</button>
     </div>

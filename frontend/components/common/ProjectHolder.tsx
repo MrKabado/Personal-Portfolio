@@ -105,7 +105,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
           </div>
 
           <Link
-            href={"/about"}
+            href={"/projects"}
             className={`flex items-center justify-center md:justify-start text-gray-800 gap-1 ${
               !limit ? "hidden" : "flex"
             }`}
