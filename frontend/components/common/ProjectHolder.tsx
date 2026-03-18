@@ -113,14 +113,13 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
               (project) => (
                 <div
                   key={project.id}
-                  className="cursor-pointer"
-                  onClick={() =>
-                    window.open(
-                      project.web_link,
-                      "_blank",
-                      "noopener,noreferrer",
-                    )
-                  }
+                  // onClick={() =>
+                  //   window.open(
+                  //     project.web_link,
+                  //     "_blank",
+                  //     "noopener,noreferrer",
+                  //   )
+                  // }
                 >
                   <ProjectCard
                     ImageSrc={project.image || "/placeholder.png"}
@@ -143,7 +142,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
             }`}
           >
             <h1 className="text-sm md:text-md font-semibold dark:text-gray-200">
-              More Projects
+              See all projects
             </h1>
             <ArrowRight className="w-5 dark:text-gray-200" />
           </Link>

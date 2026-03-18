@@ -23,7 +23,7 @@ export default function ProjectCard({
 }: Props) {
   return (
     <div className="shadow-[0_0_4px_rgba(0,0,0,0.3)] rounded-md 
-      hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-shadow duration-200 cursor-pointer
+      hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-shadow duration-200
       dark:bg-[#1A1A1A] dark:shadow-[0_0_6px_rgba(255,255,255,0.1)]">
       
       <Image
