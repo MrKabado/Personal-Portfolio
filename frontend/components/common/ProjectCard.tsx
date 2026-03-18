@@ -42,10 +42,12 @@ export default function ProjectCard({
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <h1 className="text-xl font-semibold dark:text-gray-100">{ProjectTitle}</h1>
+
             <div className={`flex justify-end gap-2 ${isAdmin ? "block" : "hidden"}`}>
               <Pencil className="w-5 text-blue-800 hover:text-blue-300 dark:text-blue-400 dark:hover:text-blue-300" />
               <Trash2 className="w-5 text-red-800 hover:text-red-300 dark:text-red-500 dark:hover:text-red-400" />
             </div>
+            
           </div>
           <p className="text-[13px] text-gray-500 leading-4 text-justify dark:text-gray-300">
             {ProjectDescription}
