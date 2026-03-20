@@ -214,7 +214,7 @@ export default function ContactPage() {
           props={{
             submitted: submitted,
             buttonType: "submit",
-            className: "w-full border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium dark:bg-[#333333] dark:border-gray-600 dark:text-gray-300 dark:hover:bg-[#444444]",
+            className: "w-full border py-2 rounded-md bg-[#222222] hover:bg-[#333333] cursor-pointer transition duration-100 ease-in-out text-gray-200 font-medium dark:bg-[#333333] dark:border-2 dark:border-[#FF9000] dark:text-[#FF9000] dark:hover:bg-[#444444]",
             btnOnClick: HandleSubmit,
             btnText: "Submit",
             btnLoadingText: "Submitting",
