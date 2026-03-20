@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import api from "../../lib/api";
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
-import Container from "./Container";
-import { Input } from "../ui/input";
+import { ArrowRight, Search, FolderKanban } from "lucide-react";
 
 type ProjectData = {
   id: number;
@@ -59,20 +57,15 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
     <div className="mt-10">
       {isHome && (
         <div className="mt-16 md:mt-32 lg:mt-40 mb-10">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <h1 className="text-sm md:text-md bg-gray-200 rounded-md px-2 py-1 w-fit dark:bg-[#333333] dark:text-gray-300">
-              Recent Projects
-            </h1>
-
-            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl leading-tight dark:text-gray-100">
-              Projects I’ve Built
+          <div className="flex flex-col items-left gap-3">
+            <h1 className="text-left font-bold text-2xl sm:text-3xl md:text-4xl leading-tight dark:text-gray-100 flex items-center gap-2">
+              Recent Projects I’ve Built{" "}
+              <FolderKanban size={40} className="inline" />
             </h1>
 
             <p className="text-sm sm:text-base text-gray-700 max-w-xl dark:text-gray-300">
               I’ve worked on diverse web projects, combining creativity and
-              functionality.
-              <br className="hidden sm:block" /> Take a look at some of my
-              standout work.
+              functionality. Take a look at some of my standout work.
             </p>
           </div>
         </div>
@@ -94,19 +87,21 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
             All Projects
           </h1>
 
-          <div className="w-full my-4">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-transparent 
+          {!limit && (
+            <div className="w-full my-4">
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Search projects..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-transparent 
                 transition-all duration-200 bg-gray-50 focus:bg-white dark:bg-[#333333] dark:border-gray-600"
-                value={searchProject}
-                onChange={(e) => setSearchProject(e.target.value)}
-              />
+                  value={searchProject}
+                  onChange={(e) => setSearchProject(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6">
             {(limit ? filteredProjects : filteredProjects.slice(0, 3)).map(

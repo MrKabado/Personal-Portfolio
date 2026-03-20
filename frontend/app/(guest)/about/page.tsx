@@ -75,8 +75,8 @@ export default function AboutPage() {
 
   const Achievements: string[] = [
     "With Honors – Senior High School (MSHS, 2023)",
-    "Creative Web Design NCIII - TESDA Certification (2025)",
-    "JAVA Programming NCIII - TESDA Certification (2024)",
+    "Creative Web Design - TESDA Certification (2025)",
+    "Programming (JAVA) NCIII - TESDA Certification (2024)",
   ];
 
   const Experience = [
