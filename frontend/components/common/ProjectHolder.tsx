@@ -106,7 +106,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6 items-stretch">
-            {(limit ? filteredProjects : filteredProjects.slice(0, 3)).map(
+            {(!limit ? filteredProjects : filteredProjects.slice(0, 3)).map(
               (project) => (
                 <div
                   key={project.id}

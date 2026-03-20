@@ -94,9 +94,11 @@ export default function ProjectsPage() {
 
                 toast.success("Successfully added new project!");
                 handleSubmitProject(response.data.data);
-                window.location.reload();
-
                 setSubmitted(false);
+
+                setTimeout(() => {
+                  window.location.reload();
+                })
               } catch (error) {
                 console.error("Upload failed:", error);
                 toast.error("Failed to add project.");
