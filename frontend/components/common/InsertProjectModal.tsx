@@ -134,6 +134,10 @@ export default function InsertProjectModal({
               "MongoDB",
               "Neon",
               "React.js",
+              "HTML",
+              "CSS",
+              "Javascript",
+              "Typescript",
             ].map((tech) => (
               <div
                 key={tech}

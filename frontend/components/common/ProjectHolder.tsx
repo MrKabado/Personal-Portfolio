@@ -10,9 +10,9 @@ type ProjectData = {
   id: number;
   title: string;
   description: string;
-  web_link: string; // web link
+  web_link: string;
   techstacks: string[];
-  image?: string; // URL from backend
+  image?: string;
   cover_image?: File;
 };
 
@@ -42,12 +42,14 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchProject.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchProject.toLowerCase());
+      project.description
+        .toLowerCase()
+        .includes(searchProject.toLowerCase());
 
     return matchesSearch;
   });
 
-  let loading = "Loading... Please wait for a moment";
+  let loading = "Oops, It looks like you haven't added any projects yet.";
   if (isAdmin === false) {
     loading =
       "It looks like Jerson Jay Bonghanoy hasn’t added any projects yet. Please check back later to see his amazing work!";
@@ -103,18 +105,12 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6 items-stretch">
             {(limit ? filteredProjects : filteredProjects.slice(0, 3)).map(
               (project) => (
                 <div
                   key={project.id}
-                  // onClick={() =>
-                  //   window.open(
-                  //     project.web_link,
-                  //     "_blank",
-                  //     "noopener,noreferrer",
-                  //   )
-                  // }
+                  className="h-full flex"
                 >
                   <ProjectCard
                     ImageSrc={project.image || "/placeholder.png"}
@@ -126,7 +122,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
                     isAdmin={isAdmin}
                   />
                 </div>
-              ),
+              )
             )}
           </div>
 

@@ -93,7 +93,8 @@ export default function ProjectsPage() {
                 console.log("Uploaded: ", response.data);
 
                 toast.success("Successfully added new project!");
-                handleSubmitProject(response.data.data); // add newly created project
+                handleSubmitProject(response.data.data);
+                window.location.reload();
 
                 setSubmitted(false);
               } catch (error) {
