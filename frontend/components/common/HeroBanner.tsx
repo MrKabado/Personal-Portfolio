@@ -39,7 +39,7 @@ export default function HeroBanner() {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
           <Link href="/contact" passHref
-            className="text-gray-200 rounded-lg px-5 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto 
+            className="text-gray-200 rounded-lg px-4 py-2 bg-[#1A1A1A] flex items-center justify-center gap-2 w-full sm:w-auto 
              dark:bg-[#333333] dark:border-2 dark:border-[#FF9000] dark:text-[#FF9000] dark:hover:bg-[#444444]"
           >
             <Phone size={20} />
