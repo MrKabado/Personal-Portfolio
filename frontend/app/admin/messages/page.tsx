@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import AdminContainer from "@/components/common/AdminContainer";
+import { useContext } from "react";
+import { DataContext } from "@/context/DataContext";
 
 type Messages = {
   fname: string;
@@ -13,7 +15,10 @@ type Messages = {
 };
 
 export default function MessagesPage() {
-  const [messages, setMessages] = useState<Messages[]>([]);
+  const context = useContext(DataContext);
+  if (!context) return null;
+
+  const { messages } = context;
   const router = useRouter();
 
   useEffect(() => {
@@ -32,20 +37,6 @@ export default function MessagesPage() {
     };
 
     verifyAdmin();
-  }, []);
-
-  useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const response = await api.get("/api/admin/messages");
-        setMessages(response.data.data);
-      } catch (error) {
-        console.log(error);
-        return;
-      }
-    };
-
-    getMessages();
   }, []);
 
   return (

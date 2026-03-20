@@ -1,34 +1,47 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from "react";
 import api from "@/lib/api";
 import { ArrowRight } from "lucide-react";
+import { useContext } from "react";
+import { DataContext } from "@/context/DataContext";
 
 type Props = {
   limit: boolean;
 };
 
 export default function RecentTaskHolder({ limit }: Props) {
-  const [recentTasks, setRecentTasks] = useState<any[]>([]);
+  const context = useContext(DataContext);
+  if (!context) return null;
+
+  const { recentTasks } = context;
 
   let loading = "Loading...Please wait for a moment";
   if (recentTasks.length == undefined) {
     loading = "No recent tasks found. Start by creating your first project!";
   }
 
-  useEffect(() => {
-    const getAllRecentTasks = async () => {
-      try {
-        const response = await api.get("/api/admin/recent-tasks");
-        setRecentTasks(response.data.data);
-      } catch (error: any) {
-        console.log(error);
-        return;
-      }
-    };
+  // useEffect(() => {
+  //   const getAllRecentTasks = async () => {
+  //     try {
+  //       const response = await api.get("/api/admin/recent-tasks");
+  //       setRecentTasks(response.data.data);
+  //     } catch (error: any) {
+  //       console.log(error);
+  //       return;
+  //     }
+  //   };
 
-    getAllRecentTasks();
-  }, []);
+  //   getAllRecentTasks();
+  // }, []);
   return (
     <div className="mt-10">
       {/* Header */}
@@ -54,7 +67,10 @@ export default function RecentTaskHolder({ limit }: Props) {
             {loading}
           </p>
         ) : (
-          (!limit ? recentTasks : recentTasks.slice(0, 3)).map((task) => (
+          (!limit
+            ? [...recentTasks].reverse()
+            : [...recentTasks].reverse().slice(0, 3)
+          ).map((task) => (
             <div
               key={task.id}
               className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 p-4 

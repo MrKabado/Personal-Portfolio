@@ -5,6 +5,8 @@ import ProjectCard from "./ProjectCard";
 import api from "../../lib/api";
 import Link from "next/link";
 import { ArrowRight, Search, FolderKanban } from "lucide-react";
+import { useContext } from "react";
+import { DataContext } from "@/context/DataContext";
 
 type ProjectData = {
   id: number;
@@ -23,21 +25,11 @@ type Props = {
 };
 
 export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
-  const [projects, setProjects] = useState<ProjectData[]>([]);
+  const context = useContext(DataContext);
+  if (!context) return null;
+
+  const { projects } = context;
   const [searchProject, setSearchProject] = useState<string>("");
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await api.get("/api/projects");
-        setProjects(response.data.data);
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
