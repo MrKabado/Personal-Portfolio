@@ -98,7 +98,7 @@ export default function ProjectsPage() {
 
                 setTimeout(() => {
                   window.location.reload();
-                })
+                }, 2000);
               } catch (error) {
                 console.error("Upload failed:", error);
                 toast.error("Failed to add project.");
