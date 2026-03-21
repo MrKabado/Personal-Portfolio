@@ -53,8 +53,8 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
         <div className="mt-16 md:mt-32 lg:mt-40 mb-10">
           <div className="flex flex-col items-left gap-3">
             <h1 className="text-left font-bold text-2xl sm:text-3xl md:text-4xl leading-tight dark:text-gray-100 flex items-center gap-2">
-              Recent Projects I’ve Built{" "}
-              <FolderKanban size={40} className="inline" />
+              Recent Projects I’ve Built 
+              <FolderKanban size={40}/>
             </h1>
 
             <p className="text-sm sm:text-base text-gray-700 max-w-xl dark:text-gray-300">
