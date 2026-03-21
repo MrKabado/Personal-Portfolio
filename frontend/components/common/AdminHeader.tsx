@@ -79,7 +79,7 @@ export default function AdminHeader() {
               <Menu size={20} />
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" className="lg:hidden w-48">
+            <DropdownMenuContent align="end" className="lg:hidden w-48 shadow-md bg-white/50 backdrop-blur-lg border-0">
               {navItems.map((item, i) => (
                 <div key={i}>
                   <Link href={`/admin/${item.link}`}>
@@ -87,7 +87,9 @@ export default function AdminHeader() {
                       {item.name}
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuSeparator />
+                  {
+                    i !== navItems.length - 1 && <DropdownMenuSeparator />
+                  }
                 </div>
               ))}
             </DropdownMenuContent>

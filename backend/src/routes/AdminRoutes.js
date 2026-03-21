@@ -9,11 +9,11 @@ const router = express.Router();
 router.post('/admin/login', loginAdmin);
 router.post('/admin/logout',jwtAuthenticate, logoutAdmin);
 router.post('/admin/add-contact',jwtAuthenticate, handleClientMessage);
-router.get('/admin/recent-tasks', jwtAuthenticate, getAllRecentTasks);
 router.post('/admin/projects', jwtAuthenticate, upload.single("proj_cover_image"), addProject);
 router.get('/admin/messages', jwtAuthenticate, getMessages);
 
 //public
 router.get('/projects', getProjects);
+router.get('/admin/recent-tasks', getAllRecentTasks);
 
 export default router;
