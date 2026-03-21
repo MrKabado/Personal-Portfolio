@@ -5,6 +5,7 @@ import Header from "@/components/common/Header";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { Toaster } from "sonner";
 import { DataProvider } from "@/context/DataContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,8 @@ export default function RootLayout({
             {children}
           </DataProvider>
         </ThemeProvider>
+
+        <Analytics />
       </body>
     </html>
   );
