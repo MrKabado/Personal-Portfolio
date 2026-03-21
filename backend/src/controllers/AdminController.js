@@ -48,6 +48,8 @@ export const loginAdmin = async (req, res) => {
     res.cookie("access_token", accessToken, accessCookieOptions);
     res.cookie("refresh_token", refreshToken, refreshCookieOptions);
 
+    localStorage.setItem("isAdminLoggedIn", "true");
+
     res.status(200).json({
       message: "Login successfully!",
       success: true,
@@ -77,6 +79,8 @@ export const logoutAdmin = async (req, res) => {
       maxAge: 0,
       path: "/",
     });
+
+    localStorage.removeItem("isAdminLoggedIn");
 
     res.status(200).json({
       message: "Logged out successfully!",

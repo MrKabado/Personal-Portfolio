@@ -40,27 +40,41 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const fetchData = async () => {
     setLoading(true);
-    try {
-      const projectRes = await api.get('/api/projects');
-      const messageRes = await api.get('/api/admin/messages');
-      const recentTaskRes = await api.get('api/admin/recent-tasks');
-      setProjects(projectRes.data.data);
-      setMessages(messageRes.data.data);
-      setRecentTasks(recentTaskRes.data.data);
 
+    try {
+      // ALWAYS fetch public data
+      const projectRes = await api.get("/api/projects");
+      setProjects(projectRes.data.data);
     } catch (error) {
-      console.error("Failed to fetch data", error);
-    } finally {
-      setLoading(false);
+      console.error("Failed to fetch projects", error);
     }
-  }
+
+    try {
+      // ONLY fetch admin if logged in
+      const isAdmin = localStorage.getItem("isAdminLoggedIn");
+
+      if (isAdmin) {
+        const messageRes = await api.get("/api/admin/messages");
+        const recentTaskRes = await api.get("/api/admin/recent-tasks");
+
+        setMessages(messageRes.data.data);
+        setRecentTasks(recentTaskRes.data.data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch admin data", error);
+    }
+
+    setLoading(false);
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
-    <DataContext.Provider value={{projects, messages, recentTasks, loading, refreshData: fetchData}}>
+    <DataContext.Provider
+      value={{ projects, messages, recentTasks, loading, refreshData: fetchData }}
+    >
       {children}
     </DataContext.Provider>
   );
