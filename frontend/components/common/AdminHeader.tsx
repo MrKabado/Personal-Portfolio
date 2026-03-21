@@ -12,13 +12,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import api from "@/lib/api";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function AdminHeader() {
   const [openNav, setOpenNav] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const pathname = usePathname();
+  const router = useRouter();
 
   const navItems = [
     { name: "Dashboard", link: "dashboard" },
@@ -44,11 +47,28 @@ export default function AdminHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+    const logoutBtnSideBar = async () => {
+    try {
+      const response = await api.post('/api/admin/logout');
+
+      if (response.data.success) {
+        localStorage.removeItem("isAdminLoggedIn");
+        toast.success("Logout successfully");
+        router.push('/');
+      }
+
+    } catch (error) {
+      toast.error("Error in logouting admin");
+      console.log(error);
+      return;
+    }
+  }
+
   return (
     <header
       className={`
     fixed top-0 left-0 w-full z-50
-    px-6 md:px-16 lg:px-34 py-3
+    px-3 md:px-10 py-3
     shadow-md bg-white/50 backdrop-blur-lg
     transition-transform duration-300 ease-in-out
     ${hidden ? "-translate-y-full" : "translate-y-0"}
@@ -61,7 +81,9 @@ export default function AdminHeader() {
           <h1 className="font-semibold text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-100">
             Jerson Jay Bonghanoy
           </h1>
-          <h1 className="text-gray-500 text-xs sm:text-sm dark:text-gray-400">Aspiring Dev</h1>
+          <h1 className="text-gray-500 text-xs sm:text-sm dark:text-gray-400">
+            Aspiring Dev
+          </h1>
         </div>
 
         {/* Right Side */}
@@ -79,7 +101,10 @@ export default function AdminHeader() {
               <Menu size={20} />
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" className="lg:hidden w-48 shadow-md bg-white/50 backdrop-blur-lg border-0">
+            <DropdownMenuContent
+              align="end"
+              className="lg:hidden w-48 shadow-md bg-white/50 backdrop-blur-lg border-0"
+            >
               {navItems.map((item, i) => (
                 <div key={i}>
                   <Link href={`/admin/${item.link}`}>
@@ -87,11 +112,16 @@ export default function AdminHeader() {
                       {item.name}
                     </DropdownMenuItem>
                   </Link>
-                  {
-                    i !== navItems.length - 1 && <DropdownMenuSeparator />
-                  }
+                  <DropdownMenuSeparator />
                 </div>
               ))}
+
+              <DropdownMenuItem 
+                onClick={logoutBtnSideBar}
+                className="text-red-600 font-medium"
+              >
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>

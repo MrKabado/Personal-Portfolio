@@ -5,9 +5,16 @@ import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 import RecentTaskHolder from "@/components/common/RecentTaskHolder";
 import AdminContainer from "@/components/common/AdminContainer";
+import { useContext } from "react";
+import { DataContext } from "@/context/DataContext";
+
 
 export default function DashboardPage() {
   const router = useRouter();
+  const context = useContext(DataContext);
+  if (!context) {
+    return null;
+  }
 
   useEffect(() => {
     const verifyAdmin = async () => {
@@ -27,30 +34,12 @@ export default function DashboardPage() {
     verifyAdmin();
   }, []);
 
-  const [recentTasks, setRecentTasks] = useState<any[]>([]);
-  const [messages, setMessages] = useState<any[]>([]);
-  const [projects, setProjects] = useState<any[]>([]);
-
-  useEffect(() => {
-    const countProjects = async () => {
-      try {
-        const response1 = await api.get("api/admin/messages");
-        setMessages(response1.data.data);
-
-        const response2 = await api.get("/api/projects");
-        setProjects(response2.data.data);
-      } catch (error: any) {
-        console.log(error);
-        return;
-      }
-    };
-
-    countProjects();
-  }, []);
+  const { recentTasks, messages, projects } = context;
 
   const KeyStats = [
     { name: "Total Projects", value: projects.length },
     { name: "Total Messages", value: messages.length },
+    { name: "Activity Logs", value: recentTasks.length },
   ];
 
   return (

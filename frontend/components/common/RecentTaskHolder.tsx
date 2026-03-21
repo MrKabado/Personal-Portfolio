@@ -29,19 +29,6 @@ export default function RecentTaskHolder({ limit }: Props) {
     loading = "No recent tasks found. Start by creating your first project!";
   }
 
-  // useEffect(() => {
-  //   const getAllRecentTasks = async () => {
-  //     try {
-  //       const response = await api.get("/api/admin/recent-tasks");
-  //       setRecentTasks(response.data.data);
-  //     } catch (error: any) {
-  //       console.log(error);
-  //       return;
-  //     }
-  //   };
-
-  //   getAllRecentTasks();
-  // }, []);
   return (
     <div className="mt-10">
       {/* Header */}

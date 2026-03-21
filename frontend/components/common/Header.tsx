@@ -99,7 +99,7 @@ export default function Header({ isVisited, setIsVisited }: HeaderProps) {
           <Menu size={20}/>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="lg:hidden w-48">
+        <DropdownMenuContent align="end" className="lg:hidden w-48 shadow-md bg-white/50 backdrop-blur-lg border-0">
               {navItems.map((item, i) => (
                 <div key={i}>
                   <Link href={`/${item.link}`}>
