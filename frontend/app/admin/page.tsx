@@ -31,6 +31,7 @@ export default function Code() {
     try {
       const response = await api.post('/api/admin/login', {secretKey});
       if (response.data.success) {
+        localStorage.setItem("isAdminLoggedIn", "true");
         toast.success(response.data.message);
         router.push('/admin/dashboard');
       }

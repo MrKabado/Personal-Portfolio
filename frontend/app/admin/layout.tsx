@@ -20,6 +20,7 @@ export default function AdminLayout({
       const response = await api.post('/api/admin/logout');
 
       if (response.data.success) {
+        localStorage.removeItem("isAdminLoggedIn");
         toast.success("Logout successfully");
         router.push('/');
       }
