@@ -34,7 +34,7 @@ export default function ProjectCard({
           "https://res.cloudinary.com/dedef9fpx/image/upload/v1772987691/fd22bff2-ab37-4436-8cd3-6c1e87f2ec87.png"
         }
         alt={ImageAlt || "Image Title"}
-        className="object-cover rounded-t-md w-full h-35"
+        className="object-cover rounded-t-md w-full h-40"
         width={400}
         height={400}
         loading="eager"

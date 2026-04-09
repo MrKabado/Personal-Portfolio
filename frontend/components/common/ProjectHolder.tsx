@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, Search, FolderKanban } from "lucide-react";
 import { useContext } from "react";
 import { DataContext } from "@/context/DataContext";
+import SkeletonLoadingHolder from "@/components/common/ProjectSkeletonLoading";
 
 type ProjectData = {
   id: number;
@@ -34,9 +35,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchProject.toLowerCase()) ||
-      project.description
-        .toLowerCase()
-        .includes(searchProject.toLowerCase());
+      project.description.toLowerCase().includes(searchProject.toLowerCase());
 
     return matchesSearch;
   });
@@ -53,8 +52,8 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
         <div className="mt-16 md:mt-32 lg:mt-40 mb-10">
           <div className="flex flex-col items-left gap-3">
             <h1 className="text-left font-bold text-2xl sm:text-3xl md:text-4xl leading-tight dark:text-gray-100 flex items-center gap-2">
-              Recent Projects I’ve Built 
-              <FolderKanban size={40}/>
+              Recent Projects I’ve Built
+              <FolderKanban size={40} />
             </h1>
 
             <p className="text-sm sm:text-base text-gray-700 max-w-xl dark:text-gray-300">
@@ -65,12 +64,9 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
         </div>
       )}
 
+      {/* IF LOADING */}
       {projects.length == 0 ? (
-        <div className="mt-10 text-center">
-          <h1 className="text-base md:text-lg italic text-gray-400">
-            {loading}
-          </h1>
-        </div>
+        <SkeletonLoadingHolder />
       ) : (
         <>
           <h1
@@ -100,10 +96,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-6 gap-5 md:gap-6 items-stretch">
             {(!limit ? filteredProjects : filteredProjects.slice(0, 3)).map(
               (project) => (
-                <div
-                  key={project.id}
-                  className="h-full flex"
-                >
+                <div key={project.id} className="h-full flex">
                   <ProjectCard
                     ImageSrc={project.image || "/placeholder.png"}
                     ImageAlt={`${project.title} cover image`}
@@ -114,7 +107,7 @@ export default function ProjectHolder({ limit, isAdmin, isHome }: Props) {
                     isAdmin={isAdmin}
                   />
                 </div>
-              )
+              ),
             )}
           </div>
 
