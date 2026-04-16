@@ -227,17 +227,14 @@ export default function AboutPage() {
             />
           </div>
 
-          <Button
-            className="mt-2 w-full sm:w-auto dark:bg-[#333333] dark:border-gray-600 dark:text-gray-300 
+          <a
+            download
+            className="bg-black hover:bg-[#333333] p-2 px-3 rounded-md text-gray-100 cursor-pointer mt-2 w-full sm:w-auto dark:bg-[#333333] dark:border-gray-600 dark:text-gray-300 
             dark:hover:bg-[#444444]"
-            onClick={() => {
-              toast.error(
-                "Oops… Jerson Jay still hasn’t gotten around to preparing his resume. Time flies!",
-              );
-            }}
+            href="/Jerson_Jay_CV.pdf"
           >
             Download Resume
-          </Button>
+          </a>
         </div>
 
         {/* Experience Section */}
