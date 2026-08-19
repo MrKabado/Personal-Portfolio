@@ -17,10 +17,8 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { JSX, useState } from "react";
 import Container from "@/components/common/Container";
-import { toast } from "sonner";
 
 // Reusable List Section Component
 type ListSectionProps<T> = {
@@ -102,10 +100,10 @@ export default function AboutPage() {
     "CSS3",
     "ShadCN",
   ];
-  const backend = ["Express.js", "REST"];
-  const authentication = ["JWT"];
+  const backend = ["Express.js", "REST", "Laravel"];
+  const authentication = ["JWT", "Laravel Sanctum"];
   const database = ["MongoDB", "MySQL", "Neon"];
-  const cloudHosting = ["Vercel", "Render"];
+  const cloudHosting = ["Vercel", "Render", "Docker"];
   const developerTools = ["Github", "Postman", "Figma", "VS Code", "Git"];
 
   const [moreTechStacks, setMoreTechStacks] = useState(false);
