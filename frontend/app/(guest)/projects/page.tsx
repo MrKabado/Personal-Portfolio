@@ -1,6 +1,6 @@
 import ProjectHolder from "@/components/common/ProjectHolder";
 import Container from "@/components/common/Container";
-import ProjectHeader from "@/components/features/projects/ProjectHeader";
+import ProjectHeader from "@/components/features/guest/projects/ProjectHeader";
 
 export default function ProjectsPage() {
   return (

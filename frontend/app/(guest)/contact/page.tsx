@@ -1,9 +1,9 @@
 "use client";
 
 import Container from "@/components/common/Container";
-import ContactHeader from "@/components/features/contact/ContactHeader";
-import ContactInfos from "@/components/features/contact/ContactInfos";
-import ContactForm from "@/components/features/contact/ContactForm";
+import ContactHeader from "@/components/features/guest/contact/ContactHeader";
+import ContactInfos from "@/components/features/guest/contact/ContactInfos";
+import ContactForm from "@/components/features/guest/contact/ContactForm";
 
 export default function ContactPage() {
   return (
@@ -14,7 +14,7 @@ export default function ContactPage() {
         <ContactInfos />
         <ContactForm />
       </div>
-      
+
     </Container>
   );
 }

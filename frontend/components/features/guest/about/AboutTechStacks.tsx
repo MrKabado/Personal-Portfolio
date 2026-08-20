@@ -19,9 +19,9 @@ import { useState } from "react";
   const cloudHosting = ["Vercel", "Render", "Docker"];
   const developerTools = ["Github", "Postman", "Figma", "VS Code", "Git"];
 
-  const [moreTechStacks, setMoreTechStacks] = useState(false);
-
 export default function AboutTechStacks() {
+  const [moreTechStacks, setMoreTechStacks] = useState(false);
+  
   return (
           <div className="w-full border border-transparent shadow-[0_0_1px_gray] p-4 sm:p-5 rounded-md">
         <div className="flex flex-row items-center gap-2 mb-5">
