@@ -7,8 +7,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  Building2,
-  Circle,
 } from "lucide-react";
 import { JSX } from "react";
 
@@ -69,7 +67,6 @@ const Achievements: string[] = [
 
 export default function AboutContent() {
   return (
-    // <div className="flex flex-col lg:flex-row gap-6 my-10">
     <div className="w-full lg:w-[75%] border border-transparent shadow-[0_0_1px_gray] p-4 sm:p-5 rounded-md">
       <div className="flex items-center mb-5 gap-1 dark:text-gray-300">
         <BriefcaseBusiness className="w-6 sm:w-8" />

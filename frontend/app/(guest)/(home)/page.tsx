@@ -1,6 +1,6 @@
 "use client";
 import ProjectHolder from "@/components/common/ProjectHolder";
-import HeroBanner from "@/components/common/HeroBanner";
+import HeroBanner from "@/components/features/home/HeroBanner";
 import Container from "@/components/common/Container";
 
 export default function HomePage() {

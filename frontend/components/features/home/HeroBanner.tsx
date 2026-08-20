@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Facebook, Github, Phone } from "lucide-react";
-import Profile from "../../assets/profile.jpg";
+import Profile from "@/assets/profile.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
